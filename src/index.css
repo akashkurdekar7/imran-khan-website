@@ -21,3 +21,8 @@
 .text-mest {
   font-family: "Mestika", serif;
 }
+.reveal-text {
+  color: transparent;
+  -webkit-text-stroke: 2px #F5F1E8;
+  will-change: color;
+}

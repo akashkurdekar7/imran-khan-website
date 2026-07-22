@@ -4,6 +4,7 @@ import Background from "./helpers/Background";
 import Header from "./helpers/Header";
 import Hero from "./components/Hero";
 import Cursor from "./helpers/Cursor";
+import Article from "./components/Article";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -14,6 +15,7 @@ const App = () => {
       <Cursor />
       <Header/>
       <Hero />
+      <Article/>
 
       {/* {loading && (
         <Loader onComplete={() => setLoading(false)} />

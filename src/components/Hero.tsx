@@ -95,8 +95,8 @@ gsap.to(".marquee-right", {
   return () => ctx.revert();
 }, []);
   return (
-    <div ref={heroRef} className="relative ">
-      <section ref={pinRef} className="relative h-screen overflow-hidden z-30">
+    <div ref={pinRef} className="relative h-screen overflow-hidden ">
+      <section  className="absolute inset-0 z-20">
 <div className="h-full relative" ref={contentRef} >
 	<span className="year absolute -top-40 left-1/2  -translate-x-1/2 text-mina text-[56px] tracking-[2px]">2008</span>
       <div className="hero-hide absolute top-8 right-8 md:top-10 md:right-10">
@@ -152,7 +152,7 @@ gsap.to(".marquee-right", {
     </section>
 <section
   ref={aboutRef}
-  className="fixed inset-0 h-screen z-10 overflow-hidden flex flex-col justify-center gap-12"
+  className="absolute inset-0 z-10 flex flex-col justify-center"
 >
   <div className="overflow-hidden">
     <div className="marquee-left whitespace-nowrap flex">
