@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Mestika";
+  src: url("./assets/fonts/Mestika.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Minasans";
+  src: url("./assets/fonts/Minasans.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.text-mina {
+  font-family: "Minasans", sans-serif;
+}
+
+.text-mest {
+  font-family: "Mestika", serif;
+}

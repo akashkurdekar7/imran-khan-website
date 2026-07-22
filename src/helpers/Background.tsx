@@ -1,6 +1,34 @@
 import { useEffect, useRef } from "react";
 import { createNoise2D } from "simplex-noise";
 import * as MarchingSquares from "marching-squares";
+
+function chaikin(points: { x: number; y: number }[], iterations = 2) {
+  let pts = [...points];
+
+  for (let k = 0; k < iterations; k++) {
+    const newPts = [];
+
+    for (let i = 0; i < pts.length; i++) {
+      const p0 = pts[i];
+      const p1 = pts[(i + 1) % pts.length];
+
+      newPts.push({
+        x: p0.x * 0.75 + p1.x * 0.25,
+        y: p0.y * 0.75 + p1.y * 0.25,
+      });
+
+      newPts.push({
+        x: p0.x * 0.25 + p1.x * 0.75,
+        y: p0.y * 0.25 + p1.y * 0.75,
+      });
+    }
+
+    pts = newPts;
+  }
+
+  return pts;
+}
+
 const Background = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -68,11 +96,11 @@ field[y][x] = noise(
         }
       }
 
-     ctx.strokeStyle = "rgba(0,0,0,.18)";
-ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(0,0,0,.10)";
+ctx.lineWidth = 0.9;
+ctx.imageSmoothingEnabled = true;
 ctx.lineJoin = "round";
 ctx.lineCap = "round";
-
 const levels = [];
 
 for (let i = -0.8; i <= 0.8; i += 0.65) {
@@ -82,19 +110,28 @@ for (let i = -0.8; i <= 0.8; i += 0.65) {
 const contours = MarchingSquares.isoLines(field, levels);
 
 contours.forEach((group: any) => {
-  group.forEach((line: any) => {
-    ctx.beginPath();
+ group.forEach((line: any) => {
+  let points = line.map(([px, py]: number[]) => ({
+    x: px * resolution,
+    y: py * resolution,
+  }));
 
-    line.forEach(([px, py]: number[], i: number) => {
-      const X = px * resolution;
-      const Y = py * resolution;
+  if (points.length < 3) return;
 
-      if (i === 0) ctx.moveTo(X, Y);
-      else ctx.lineTo(X, Y);
-    });
+  // Smooth the contour
+ points = chaikin(points, 3);
 
-    ctx.stroke();
-  });
+// Tiny animated wobble
+ctx.beginPath();
+ctx.moveTo(points[0].x, points[0].y);
+
+for (let i = 1; i < points.length; i++) {
+  ctx.lineTo(points[i].x, points[i].y);
+}
+
+  ctx.closePath();
+  ctx.stroke();
+});
 });
 
       time += 0.001;
@@ -113,7 +150,7 @@ contours.forEach((group: any) => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10"
+      className="fixed inset-0 -z-10 "
     />
   );
 };

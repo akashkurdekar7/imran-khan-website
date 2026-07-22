@@ -1,7 +1,9 @@
 import { useState } from "react";
-import Hero from "./components/Hero";
 import Loader from "./helpers/Loader";
 import Background from "./helpers/Background";
+import Header from "./helpers/Header";
+import Hero from "./components/Hero";
+import Cursor from "./helpers/Cursor";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -9,6 +11,9 @@ const App = () => {
   return (
     <div className="relative min-h-screen overflow-hidden ">
       <Background />
+      <Cursor />
+      <Header/>
+      <Hero />
 
       {/* {loading && (
         <Loader onComplete={() => setLoading(false)} />
