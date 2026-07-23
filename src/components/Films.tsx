@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
 import star from "/stickers/star.png";
@@ -109,88 +110,124 @@ const frames = [
   },
 ];
 
+const lenis = new Lenis({
+  smoothWheel: true,
+});
+
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
+
 const Films = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const container = containerRef.current!;
+      const sections = gsap.utils.toArray(".scene");
 
-      gsap.to(container, {
-        x: () => -(container.scrollWidth - window.innerWidth),
+      gsap.to(containerRef.current, {
+        xPercent: -100 * (sections.length - 1),
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => "+=" + (container.scrollWidth - window.innerWidth),
-          scrub: 1,
+          end: () => "+=3000",
           pin: true,
+          scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          markers: true, // remove later
         },
       });
-      gsap.set(".scene1-photo1", {
-        y: 300,
-        z: -800,
-        opacity: 0,
-        rotate: -12,
-      });
 
-      gsap.set(".scene1-photo2", {
-        y: -300,
-        z: -1200,
-        opacity: 0,
-      });
+      // gsap.set(".scene1-photo1", {
+      //   x: 200,
+      //   y: 300,
+      //   scale: 0.8,
+      //   opacity: 0.5,
+      //   yoyo: true,
+      //   repeat: 1,
+      // });
 
-      gsap.set(".scene1-text", {
-        y: 100,
-        opacity: 0,
-      });
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=3000",
-          scrub: 1,
-          pin: true,
-        },
-      });
-      tl.to(".scene1-photo1", {
-        y: 0,
-        z: 0,
-        opacity: 1,
-        rotate: 0,
-      })
+      // const tl = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: sectionRef.current,
+      //     start: "top center",
+      //     end: "center top",
+      //     scrub: 1,
+      //     markers: true,
+      //   },
+      // });
 
-        .to(
-          ".scene1-photo2",
-          {
-            y: 0,
-            z: 0,
-            opacity: 1,
+      // tl.to(".scene1-photo1", {
+      //   keyframes: [
+      //     {
+      //       x: 180,
+      //       y: 120,
+      //       duration: 0.25,
+      //     },
+      //     {
+      //       x: 80,
+      //       y: 40,
+      //       duration: 0.25,
+      //     },
+      //     {
+      //       x: 0,
+      //       y: 0,
+      //       duration: 0.5,
+      //     },
+      //   ],
+      //   scale: 1,
+      //   opacity: 1,
+      //   ease: "power2.out",
+      // });
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".scene1-photo1",
+            start: "left 80%",
+            end: "left 40%",
+            scrub: 1,
+            markers: true,
           },
-          "<0.2"
-        )
-
-        .to(
-          ".scene1-text",
-          {
-            opacity: 1,
-            y: 0,
-          },
-          "<0.2"
-        );
+        })
+        .to(".scene1-photo1", {
+          keyframes: [
+            {
+              x: 180,
+              y: 120,
+              duration: 0.25,
+            },
+            {
+              x: 80,
+              y: 40,
+              duration: 0.25,
+            },
+            {
+              x: 0,
+              y: 0,
+              duration: 0.5,
+            },
+          ],
+          scale: 1,
+          opacity: 1,
+          ease: "power2.out",
+        });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
   return (
     <section ref={sectionRef} className="relative h-screen overflow-hidden ">
-      <div ref={containerRef} className="relative h-full w-[300vw] flex ">
+      <div ref={containerRef} className="relative h-full w-[350vw] flex z-10 ">
+        <div className="w-[50vw]"></div>
         <div className="scene scene1 relative w-screen h-screen border-2 border-blue-500">
           {/* slide1 */}
-          <div className="scene1-photo1 absolute left-[20%] translate-x-[-50%] top-1/2 translate-y-[-50%] flex flex-col gap-2">
+          <div className="scene1-photo1 absolute left-[00%] translate-x-[-50%] top-1/2 translate-y-[-50%] flex flex-col gap-2">
             <div className="flex justify-between items-center text-[12px] ">
               <span>Jaane Tu... Ya Jaane Na, 2008</span>
               <span className="uppercase">jai, aditi and meghna</span>

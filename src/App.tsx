@@ -13,9 +13,9 @@ const App = () => {
   return (
     <div className="relative min-h-screen overflow-hidden ">
       <Background />
-      <Cursor />
+      {/* <Cursor />
       <Header />
-      <Hero />
+      <Hero /> */}
       <Article />
       <Films />
       <Poster />

@@ -24,7 +24,6 @@ const Article = () => {
           start: "top 70%",
           end: "center center",
           scrub: true,
-          markers: true,
         },
       });
 
