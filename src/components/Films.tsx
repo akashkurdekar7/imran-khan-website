@@ -1,10 +1,10 @@
 import gsap from "gsap";
-import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
 import star from "/stickers/star.png";
 import tape from "/stickers/tape.png";
 import whiteTape from "/stickers/white-tape.png";
+import Background from "../helpers/Background";
 gsap.registerPlugin(ScrollTrigger);
 const slide1 = "/films/slide1.png";
 const slide2 = "/films/slide2.png";
@@ -110,320 +110,377 @@ const frames = [
   },
 ];
 
-const lenis = new Lenis({
-  smoothWheel: true,
-});
-
-lenis.on("scroll", ScrollTrigger.update);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
-
-gsap.ticker.lagSmoothing(0);
+const colors = [
+  {
+    color: "#fff403",
+    lineColor: "#000",
+  },
+  {
+    color: "#000",
+    lineColor: "#fff",
+  },
+  {
+    color: "#ffffff",
+    lineColor: "rgba(0,0,0,.1)",
+  },
+];
 
 const Films = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const contentRef = useRef<HTMLDivElement>(null);
+  const filmsRef = useRef({
+    color: "#fff",
+    lineColor: "rgba(0,0,0,.1)",
+  });
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray(".scene");
+      const container = containerRef.current!;
+      // entrance
+      gsap.fromTo(
+        contentRef.current,
+        {
+          x: 300,
+          y: 300,
+          scale: 0.65,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top center",
+            end: "top top",
+            scrub: 5,
+          },
+        }
+      );
 
-      gsap.to(containerRef.current, {
-        xPercent: -100 * (sections.length - 1),
+      // horizontal
+      const horizontalTween = gsap.to(containerRef.current, {
+        x: () => -(container.scrollWidth - window.innerWidth),
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => "+=3000",
+          end: () => "+=" + (container.scrollWidth - window.innerWidth),
           pin: true,
           scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
         },
       });
 
-      // gsap.set(".scene1-photo1", {
-      //   x: 200,
-      //   y: 300,
-      //   scale: 0.8,
-      //   opacity: 0.5,
-      //   yoyo: true,
-      //   repeat: 1,
-      // });
+      gsap.utils.toArray<HTMLElement>(".scene").forEach((scene, i) => {
+        ScrollTrigger.create({
+          trigger: scene,
+          containerAnimation: horizontalTween,
+          start: "left center",
+          end: "right center",
 
-      // const tl = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: sectionRef.current,
-      //     start: "top center",
-      //     end: "center top",
-      //     scrub: 1,
-      //     markers: true,
-      //   },
-      // });
-
-      // tl.to(".scene1-photo1", {
-      //   keyframes: [
-      //     {
-      //       x: 180,
-      //       y: 120,
-      //       duration: 0.25,
-      //     },
-      //     {
-      //       x: 80,
-      //       y: 40,
-      //       duration: 0.25,
-      //     },
-      //     {
-      //       x: 0,
-      //       y: 0,
-      //       duration: 0.5,
-      //     },
-      //   ],
-      //   scale: 1,
-      //   opacity: 1,
-      //   ease: "power2.out",
-      // });
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: ".scene1-photo1",
-            start: "left 80%",
-            end: "left 40%",
-            scrub: 1,
-            markers: true,
+          onEnter: () => {
+            gsap.to(filmsRef.current, {
+              ...colors[i],
+              ease: "power2.inOut",
+              overwrite: "auto",
+            });
           },
-        })
-        .to(".scene1-photo1", {
-          keyframes: [
-            {
-              x: 180,
-              y: 120,
-              duration: 0.25,
-            },
-            {
-              x: 80,
-              y: 40,
-              duration: 0.25,
-            },
-            {
-              x: 0,
-              y: 0,
-              duration: 0.5,
-            },
-          ],
-          scale: 1,
-          opacity: 1,
-          ease: "power2.out",
+
+          onEnterBack: () => {
+            gsap.to(filmsRef.current, {
+              ...colors[i],
+              ease: "power2.inOut",
+              overwrite: "auto",
+            });
+          },
         });
+      });
+      gsap.set(".text-reveal", {
+        xPercent: -100,
+      });
+
+      gsap.to(".text-reveal", {
+        xPercent: 200,
+        ease: "none",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: ".text-frame",
+          start: "top 80%",
+          end: "+=100",
+          scrub: 1,
+        },
+      });
+      gsap.set(".text-reveal2", {
+        xPercent: -150,
+      });
+
+      gsap.utils.toArray(".text-frame2").forEach((frame) => {
+        gsap.to(frame.querySelectorAll(".text-reveal2"), {
+          xPercent: 300,
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: frame,
+            containerAnimation: horizontalTween,
+            start: "left 70%",
+            end: "+=100",
+            scrub: 3,
+            toggleActions: "once",
+          },
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
   return (
     <section ref={sectionRef} className="relative h-screen overflow-hidden ">
-      <div ref={containerRef} className="relative h-full w-[350vw] flex z-10 ">
-        <div className="w-[50vw]"></div>
-        <div className="scene scene1 relative w-screen h-screen border-2 border-blue-500">
-          {/* slide1 */}
-          <div className="scene1-photo1 absolute left-[00%] translate-x-[-50%] top-1/2 translate-y-[-50%] flex flex-col gap-2">
-            <div className="flex justify-between items-center text-[12px] ">
-              <span>Jaane Tu... Ya Jaane Na, 2008</span>
-              <span className="uppercase">jai, aditi and meghna</span>
+      <Background bgRef={filmsRef} />
+      <div className="" ref={contentRef}>
+        <div
+          ref={containerRef}
+          className="relative h-full w-[300vw] flex z-10 "
+        >
+          <div className="scene  relative w-screen h-screen">
+            {/* slide1 */}
+            <div className=" absolute left-[20%] translate-x-[-50%] top-1/2 translate-y-[-50%] flex flex-col gap-2">
+              <div className="flex justify-between items-center text-[12px] ">
+                <span>Jaane Tu... Ya Jaane Na, 2008</span>
+                <span className="uppercase">jai, aditi and meghna</span>
+              </div>
+              <img
+                src={frames[0].image}
+                alt={frames[0].image}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <img
-              src={frames[0].image}
-              alt={frames[0].image}
-              className="w-full h-full object-cover"
-            />
-          </div>
 
-          <div className="scene1-photo2   absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] text-[16px] max-w-[250px] flex flex-col gap-4">
-            <p>"You know..."</p>
-            <p> sometimes I think love isn't supposed to be complicated.</p>
-          </div>
-          <div className="scene1-quote absolute left-[20%] translate-x-[-50%] top-[90%] translate-y-[-50%] text-[16px] flex flex-col gap-4">
-            <p>
-              its all about
-              <br />
-              loving the process
-            </p>
-          </div>
+            <div className="text-frame absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] text-[16px] max-w-[250px] flex flex-col gap-4">
+              <p className="relative inline-block overflow-hidden">
+                <span className="text-reveal absolute inset-0 bg-yellow-300 z-10"></span>
+                <span className="relative z-20 mix-blend-difference text-black">
+                  "You know..."
+                </span>
+              </p>
 
-          {/* slide 2 */}
-          <div className="scene1-photo3 absolute left-[50%] translate-x-[-50%] top-[80%] translate-y-[-50%] flex flex-col gap-2">
-            <img
-              src={frames[1].image}
-              alt={frames[1].image}
-              className="w-full h-full object-cover"
-            />
-            <span className="text-[12px] uppercase">
-              pappu cant Dance saLA**
-            </span>
-          </div>
-          {/* slide 3 */}
-          <div className="scene1-photo4 absolute left-[72%] translate-x-[-50%] top-[30%] translate-y-[-50%] flex flex-col gap-2">
-            <span className="text-[12px] uppercase">
-              Bollywoord{" "}
-              <span className="relative inline-block">
-                <span className="absolute inset-0 bg-blue-500 blur-sm rounded"></span>
-                <span className="relative line-through">sucks</span>
+              <p className="relative inline-block overflow-hidden">
+                <span className="text-reveal absolute inset-0 bg-yellow-300 z-10"></span>
+                <span className="relative z-20 mix-blend-difference text-black">
+                  Sometimes I think love isn't supposed to be complicated.
+                </span>
+              </p>
+            </div>
+
+            <div className="scene1-quote absolute left-[20%] translate-x-[-50%] top-[90%] translate-y-[-50%] text-[16px] flex flex-col gap-4">
+              <p>
+                its all about
+                <br />
+                loving the process
+              </p>
+            </div>
+
+            {/* slide 2 */}
+            <div className="scene1-photo3 absolute left-[50%] translate-x-[-50%] top-[80%] translate-y-[-50%] flex flex-col gap-2">
+              <img
+                src={frames[1].image}
+                alt={frames[1].image}
+                className="w-full h-full object-cover"
+              />
+              <span className="text-[12px] uppercase">
+                pappu cant Dance saLA**
               </span>
-            </span>
-            <img
-              src={frames[2].image}
-              alt={frames[2].image}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-        <div className="scene scene2 relative w-screen h-screen border-2 border-red-500">
-          {/* slide 4 */}
-          <div className="scene2-photo1 absolute -left-[10%]  top-1/2 -translate-y-1/2 flex flex-col gap-2">
-            <span className="text-[12px] uppercase ">
-              hojata hai yaar voh kya train ka ticket
-              <br />
-              hai jisko paheli book karlo nhi ho jatta hai
-            </span>
-            <img
-              src={frames[3].image}
-              alt={frames[3].image}
-              className="w-full h-full object-cover"
-            />
-            <div className="flex  justify-between items-center">
-              <p className="text-[12px] uppercase">i hate luv storys, 2010</p>
-              <p className="text-[12px] uppercase">jay, simran and raj</p>
+            </div>
+            {/* slide 3 */}
+            <div className="scene1-photo4 absolute left-[72%] translate-x-[-50%] top-[30%] translate-y-[-50%] flex flex-col gap-2">
+              <span className="text-[12px] uppercase">
+                Bollywoord{" "}
+                <span className="relative inline-block">
+                  <span className="absolute inset-0 bg-blue-500 blur-sm rounded"></span>
+                  <span className="relative line-through">sucks</span>
+                </span>
+              </span>
+              <img
+                src={frames[2].image}
+                alt={frames[2].image}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
-          {/* slide 5 */}
-          <div className="scene2-photo2 absolute left-[45%] top-1/2  -translate-x-1/2  -translate-y-1/2 flex flex-col gap-2">
-            <img
-              src={whiteTape}
-              alt="tape"
-              className=" absolute -top-7 -left-8 z-10 object-cover -rotate-4"
-            />
-            <img
-              src={frames[4].image}
-              alt={frames[4].image}
-              className="w-full h-full object-cover"
-            />
-            <div className="flex  justify-between items-center">
-              <p className="text-[12px] uppercase">
-                break ke baad
+          <div className="scene scene2 relative w-screen h-screen ">
+            {/* slide 4 */}
+            <div className="scene2-photo1 absolute -left-[10%]  top-1/2 -translate-y-1/2 flex flex-col gap-2">
+              <span className="text-[12px] uppercase ">
+                hojata hai yaar voh kya train ka ticket
                 <br />
-                2010
-              </p>
-              <p className="text-[12px] uppercase">
-                abhay, aaliya
-                <br />
-                nats, cyrus
-              </p>
+                hai jisko paheli book karlo nhi ho jatta hai
+              </span>
+              <img
+                src={frames[3].image}
+                alt={frames[3].image}
+                className="w-full h-full object-cover"
+              />
+              <div className="flex  justify-between items-center">
+                <p className="text-[12px] uppercase">i hate luv storys, 2010</p>
+                <p className="text-[12px] uppercase">jay, simran and raj</p>
+              </div>
             </div>
-          </div>
-          {/* slide 6 */}
-          <div className="scene2-photo3 absolute left-[75%] top-[20%]  -translate-x-1/2  -translate-y-1/2 flex flex-col gap-2">
-            <img
-              src={frames[5].image}
-              alt={frames[5].image}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="scene2-quote absolute left-[75%] top-[50%]  -translate-x-1/2  -translate-y-1/2  flex flex-col gap-0">
-            <p className="text-[18px]">main apne life ke har</p>
-            <p className="text-[18px]"> scene</p>
-            <p className="text-[18px]"> mein na star hoon...</p>
-          </div>
-          {/* slide 7 */}
-          <div className="scene2-photo4 absolute left-[85%] top-[80%]  -translate-x-1/2  -translate-y-1/2 flex flex-col gap-2">
-            <img
-              src={frames[6].image}
-              alt={frames[6].image}
-              className="w-full h-full object-cover"
-            />
-            <div className="text-[12px] uppercase flex  justify-between items-center">
-              <p>ek main aur ekk tu, 2012</p>
-              <p>rahul & riana</p>
+            {/* slide 5 */}
+            <div className="scene2-photo2 absolute left-[45%] top-1/2  -translate-x-1/2  -translate-y-1/2 flex flex-col gap-2">
+              <img
+                src={whiteTape}
+                alt="tape"
+                className=" absolute -top-7 -left-8 z-10 object-cover -rotate-4"
+              />
+              <img
+                src={frames[4].image}
+                alt={frames[4].image}
+                className="w-full h-full object-cover"
+              />
+              <div className="flex  justify-between items-center">
+                <p className="text-[12px] uppercase">
+                  break ke baad
+                  <br />
+                  2010
+                </p>
+                <p className="text-[12px] uppercase">
+                  abhay, aaliya
+                  <br />
+                  nats, cyrus
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="scene scene3 relative w-screen h-screen border-2 border-yellow-500">
-          {/* slide 8 */}
-          <div className="scene3-photo1 absolute left-0  top-[30%] -translate-y-1/2 flex flex-col gap-2 bg-white px-3 pt-3 pb-6 bg-[#ececec] shadow-xl">
-            <img
-              src={whiteTape}
-              alt="tape"
-              className=" absolute -top-5  left-1/2 -translate-x-1/2 rotate-20  z-10 object-cover -rotate-4"
-            />
-            <img
-              src={frames[10].image}
-              alt={frames[10].image}
-              className="w-full h-full object-cover"
-            />
-            <div className="flex  justify-between items-center">
-              <p className="text-[12px] uppercase">
-                Mere Brother Ki Dulhan
-                <br />
-                2011
-              </p>
-              <p className="text-[12px] uppercase">
-                kush & dimple
-                <br />
-                luv & piali
-              </p>
+            {/* slide 6 */}
+            <div className="scene2-photo3 absolute left-[75%] top-[20%]  -translate-x-1/2  -translate-y-1/2 flex flex-col gap-2">
+              <img
+                src={frames[5].image}
+                alt={frames[5].image}
+                className="w-full h-full object-cover"
+              />
             </div>
-          </div>
-          {/* slide 9 */}
-          <div className="scene3-photo2  absolute left-80  top-[80%] -translate-y-1/2 flex flex-col gap-2 ">
-            <img
-              src={star}
-              alt="tape"
-              className=" absolute -top-5  left-full -translate-x-1/2  z-10 object-cover "
-            />
-            <img
-              src={frames[7].image}
-              alt={frames[7].image}
-              className="w-full h-full object-cover"
-            />
-            <p className="text-[12px] uppercase">
-              magent of opp attract each other
-            </p>
-          </div>
 
-          <div className="scene3-photo3  absolute left-[45%] top-1/2 -translate-y-1/2 -translate-x-1/2">
-            <p className="">
-              Lorem ipsum dolor sit amet consectetur,
-              <br />
-              adipisicing elit. Dignissimos, magni.
-            </p>
-          </div>
+            <div className="text-frame2 absolute left-[75%] top-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col gap-0 ">
+              <p className="relative overflow-hidden w-fit">
+                <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
+                <span className="relative ">main apne life ke har</span>
+              </p>
 
-          {/* slide 10 */}
-          <div className="scene3-photo4  absolute left-[60%] top-[25%] -translate-y-1/2 flex flex-col gap-2 bg-white px-3 pt-3 pb-6 bg-[#ececec] shadow-xl">
-            <img
-              src={frames[8].image}
-              alt={frames[8].image}
-              className="w-full h-full object-cover"
-            />
-            <p className="text-[12px] uppercase">
-              magent of opp attract each other
-            </p>
+              <p className="relative overflow-hidden w-fit">
+                <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
+                <span className="relative">scene</span>
+              </p>
+
+              <p className="relative overflow-hidden w-fit">
+                <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
+                <span className="relative">mein na star hoon...</span>
+              </p>
+            </div>
+
+            {/* <div className="scene2-quote absolute left-[75%] top-[50%]  -translate-x-1/2  -translate-y-1/2  flex flex-col gap-0">
+              <p className="text-[18px]">main apne life ke har</p>
+              <p className="text-[18px]"> scene</p>
+              <p className="text-[18px]"> mein na star hoon...</p>
+            </div> */}
+            {/* slide 7 */}
+            <div className="scene2-photo4 absolute left-[85%] top-[80%]  -translate-x-1/2  -translate-y-1/2 flex flex-col gap-2">
+              <img
+                src={frames[6].image}
+                alt={frames[6].image}
+                className="w-full h-full object-cover"
+              />
+              <div className="text-[12px] uppercase flex  justify-between items-center">
+                <p>ek main aur ekk tu, 2012</p>
+                <p>rahul & riana</p>
+              </div>
+            </div>
           </div>
-          {/* slide 11 */}
-          <div className="scene3-photo5  absolute left-[60%] top-[80%] -translate-y-1/2 flex flex-col gap-2 ">
-            <img
-              src={tape}
-              alt="tape"
-              className=" absolute -top-15  left-5 -translate-x-1/2  z-10 object-cover "
-            />
-            <img
-              src={frames[9].image}
-              alt={frames[7].image}
-              className="w-full h-full object-cover"
-            />
-            <p className="text-[12px] uppercase">
-              magent of opp attract each other
-            </p>
+          <div className="scene scene3 relative w-screen h-screen ">
+            {/* slide 8 */}
+            <div className="scene3-photo1 absolute left-0  top-[30%] -translate-y-1/2 flex flex-col gap-2 bg-white px-3 pt-3 pb-6 bg-[#ececec] shadow-xl">
+              <img
+                src={whiteTape}
+                alt="tape"
+                className=" absolute -top-5  left-1/2 -translate-x-1/2 rotate-20  z-10 object-cover -rotate-4"
+              />
+              <img
+                src={frames[10].image}
+                alt={frames[10].image}
+                className="w-full h-full object-cover"
+              />
+              <div className="flex  justify-between items-center">
+                <p className="text-[12px] uppercase">
+                  Mere Brother Ki Dulhan
+                  <br />
+                  2011
+                </p>
+                <p className="text-[12px] uppercase">
+                  kush & dimple
+                  <br />
+                  luv & piali
+                </p>
+              </div>
+            </div>
+            {/* slide 9 */}
+            <div className="scene3-photo2  absolute left-80  top-[80%] -translate-y-1/2 flex flex-col gap-2 ">
+              <img
+                src={star}
+                alt="tape"
+                className=" absolute -top-5  left-full -translate-x-1/2  z-10 object-cover "
+              />
+              <img
+                src={frames[7].image}
+                alt={frames[7].image}
+                className="w-full h-full object-cover"
+              />
+              <p className="text-[12px] uppercase">
+                magent of opp attract each other
+              </p>
+            </div>
+
+            <div className="scene3-photo3  absolute left-[45%] top-1/2 -translate-y-1/2 -translate-x-1/2">
+              <p className="">
+                Lorem ipsum dolor sit amet consectetur,
+                <br />
+                adipisicing elit. Dignissimos, magni.
+              </p>
+            </div>
+
+            {/* slide 10 */}
+            <div className="scene3-photo4  absolute left-[60%] top-[20%] -translate-y-1/2 flex flex-col gap-2 bg-white px-3 pt-3 pb-6 bg-[#ececec] shadow-xl">
+              <img
+                src={frames[8].image}
+                alt={frames[8].image}
+                className="w-full h-full object-cover"
+              />
+              <p className="text-[12px] uppercase">
+                magent of opp attract each other
+              </p>
+            </div>
+            {/* slide 11 */}
+            <div className="scene3-photo5  absolute left-[60%] top-[70%] -translate-y-1/2 flex flex-col gap-2 ">
+              <img
+                src={tape}
+                alt="tape"
+                className=" absolute -top-15  left-5 -translate-x-1/2  z-10 object-cover "
+              />
+              <img
+                src={frames[9].image}
+                alt={frames[7].image}
+                className="w-full h-full object-cover"
+              />
+              <div className="flex  justify-between items-center">
+                <p className="text-[12px] uppercase">
+                  Mere Brother Ki Dulhan
+                  <br />
+                  2011
+                </p>
+                <p className="text-[12px] uppercase">
+                  kush & dimple
+                  <br />
+                  luv & piali
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

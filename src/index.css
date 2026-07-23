@@ -31,3 +31,66 @@
   perspective: 1800;
   transform-style: preserve-3d;
 }
+
+.wipe {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.wipe::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff403;
+  transform: translateX(var(--wipe-x, -100%));
+}
+
+.poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0.15;
+  pointer-events: none;
+}
+.strip:nth-child(1) .poster-img {
+  left: 0%;
+}
+.strip:nth-child(2) .poster-img {
+  left: -10%;
+}
+.strip:nth-child(3) .poster-img {
+  left: -20%;
+}
+.strip:nth-child(4) .poster-img {
+  left: -30%;
+}
+.strip:nth-child(5) .poster-img {
+  left: -40%;
+}
+.strip:nth-child(6) .poster-img {
+  left: -50%;
+}
+.strip:nth-child(7) .poster-img {
+  left: -60%;
+}
+.strip:nth-child(8) .poster-img {
+  left: -70%;
+}
+.strip:nth-child(9) .poster-img {
+  left: -80%;
+}
+.strip:nth-child(10) .poster-img {
+  left: -90%;
+}
+
+.overlay {
+  background: repeating-linear-gradient(
+    to right,
+    black 0px,
+    black 10px,
+    transparent 10px,
+    transparent 12px
+  );
+}

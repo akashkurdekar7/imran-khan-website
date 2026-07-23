@@ -3,11 +3,15 @@ import heroImage from "/hero.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Background from "../helpers/Background";
+import { useBackground } from "../provider/BackgroundProvider";
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const heroRef = useRef(null);
   const pinRef = useRef(null);
+  const aboutRef = useRef(null);
   const contentRef = useRef(null);
+  const { bg } = useBackground();
   const heroBg = useRef({
     color: "#fff",
     lineColor: "rgba(0,0,0,.1)",
@@ -102,7 +106,7 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
   return (
-    <div ref={pinRef} className="hero relative h-screen overflow-hidden ">
+    <div ref={pinRef} className="relative h-screen overflow-hidden ">
       <section className="absolute inset-0 z-20" ref={contentRef}>
         <Background bgRef={heroBg} />
         <div className="h-full relative">
