@@ -135,11 +135,11 @@ gsap.to(".marquee-right", {
     <div className=" hero-hide absolute top-1/2 -translate-y-1/2 -right-72 flex flex-col items-start z-20">
   <span className="text-mina text-[90px] leading-[20px]">"</span>
 <p className="text-mest text-[24px] leading-[1.35] ">
-  Lorem ipsum dolor sit amet,
+  the boy who  
   <br />
-  consectetur adipisicing elit.
+  made romance
   <br />
-  Nostrum, ab?
+  feel effortless.
 </p>
   <div className="w-20 h-[2px] bg-black/20 mt-3" />
 </div>

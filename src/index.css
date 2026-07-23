@@ -23,6 +23,11 @@
 }
 .reveal-text {
   color: transparent;
-  -webkit-text-stroke: 2px #F5F1E8;
+  -webkit-text-stroke: 2px #f5f1e8;
   will-change: color;
+}
+
+.scene {
+  perspective: 1800;
+  transform-style: preserve-3d;
 }
