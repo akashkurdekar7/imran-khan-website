@@ -246,7 +246,9 @@ const Films = () => {
             {/* slide1 */}
             <div className=" absolute left-[20%] translate-x-[-50%] top-1/2 translate-y-[-50%] flex flex-col gap-2">
               <div className="flex justify-between items-center text-[12px] ">
-                <span>Jaane Tu... Ya Jaane Na, 2008</span>
+                <span className="mix-blend-difference text-white">
+                  Jaane Tu... Ya Jaane Na, 2008
+                </span>
                 <span className="uppercase">jai, aditi and meghna</span>
               </div>
               <img
