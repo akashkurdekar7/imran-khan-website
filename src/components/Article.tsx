@@ -56,6 +56,7 @@ const Article = () => {
         autoPlay
         muted
         loop
+        preload="metadata"
         playsInline
       />
     </div>

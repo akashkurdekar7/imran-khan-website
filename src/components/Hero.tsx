@@ -8,6 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const pinRef = useRef(null);
   const contentRef = useRef(null);
+  const signatureRef = useRef<HTMLDivElement>(null);
+
   const heroBg = useRef({
     color: "#fff",
     lineColor: "rgba(0,0,0,.1)",
@@ -19,7 +21,6 @@ const Hero = () => {
   });
 
   const marqueeText1 = "ACTOR • DIRECTOR • WRITER • PRODUCER •";
-
   const marqueeText2 =
     "JAANE TU... YA JAANE NA • KIDNAP • LUCK • I HATE LUV STORYS • BREAK KE BAAD • DELHI BELLY • MERE BROTHER KI DULHAN • MATRU KI BIJLEE KA MANDOLA •";
   useLayoutEffect(() => {
@@ -86,7 +87,12 @@ const Hero = () => {
         },
         0.09
       );
+    });
 
+    return () => ctx.revert();
+  }, []);
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
       const left = document.querySelector(".marquee-left") as HTMLElement;
 
       gsap.to(left, {
@@ -123,8 +129,6 @@ const Hero = () => {
 
     return () => ctx.revert();
   }, []);
-
-  const signatureRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const signatureTl = gsap.timeline({
@@ -133,7 +137,6 @@ const Hero = () => {
           start: "top top",
           end: "+=800",
           scrub: 1,
-          markers: true,
         },
       });
 
