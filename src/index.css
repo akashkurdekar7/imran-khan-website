@@ -94,3 +94,7 @@
     transparent 12px
   );
 }
+
+.film-card:hover {
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+}

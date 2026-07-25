@@ -7,9 +7,9 @@ import Article from "./components/Article";
 import Poster from "./components/Poster";
 import Films from "./components/Films";
 import SmoothScroll from "./helpers/SmoothScroll";
+import Demo from "./components/Demo";
 const App = () => {
   const [loading, setLoading] = useState(true);
-
   return (
     <div className="relative min-h-screen overflow-hidden ">
       <SmoothScroll />
@@ -19,7 +19,8 @@ const App = () => {
       <Article />
       <Films />
       <Poster />
-      {/* {loading && <Loader onComplete={() => setLoading(false)} />} */}
+      <Demo />
+      {loading && <Loader onComplete={() => setLoading(false)} />}
     </div>
   );
 };
