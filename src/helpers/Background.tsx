@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { createNoise2D } from "simplex-noise";
 import * as MarchingSquares from "marching-squares";
-import { useBackground } from "../provider/BackgroundProvider";
 
 type BackgroundProps = {
   bgRef: React.MutableRefObject<{
@@ -38,8 +37,6 @@ function chaikin(points: { x: number; y: number }[], iterations = 2) {
 }
 const Background = ({ bgRef }: BackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { bg } = useBackground();
-
   useEffect(() => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;

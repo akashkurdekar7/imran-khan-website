@@ -291,7 +291,7 @@ const Hero = () => {
 
         <div className="overflow-hidden">
           <div className="marquee-right whitespace-nowrap flex">
-            {marqueeText1.split(" ").map((word, i) => (
+            {marqueeText2.split(" ").map((word, i) => (
               <span
                 key={i}
                 className="marquee-word text-[90px] uppercase text-mina px-10 shrink-0"

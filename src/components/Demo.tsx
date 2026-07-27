@@ -11,8 +11,6 @@ export default function Demo() {
   const screen2Content = useRef<HTMLDivElement>(null);
   const screen3Content = useRef<HTMLDivElement>(null);
   const filmRef = useRef<HTMLDivElement>(null);
-  const velocity = useRef(0);
-  const currentX = useRef(0);
   const movies = [
     "Kidnap",
     "Luck",
