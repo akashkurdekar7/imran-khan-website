@@ -11,15 +11,7 @@ type MovieCardProps = {
   starring: string;
 };
 
-const MovieCard = ({
-  image,
-  title,
-  year,
-  runtime,
-  producer,
-  director,
-  starring,
-}: MovieCardProps) => {
+const MovieCard = ({ image, title }: MovieCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const enter = () => {
@@ -60,7 +52,7 @@ const MovieCard = ({
       />
 
       {/* Popup Card */}
-     {/* <div
+      {/* <div
         ref={cardRef}
         className="absolute left-1/2 top-1/2 z-50 w-max -translate-x-1/2 -translate-y-1/2 bg-white px-2 pt-2 pb-3 shadow-2xl border-black border-2"
         style={{

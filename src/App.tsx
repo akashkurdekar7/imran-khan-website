@@ -8,6 +8,7 @@ import Poster from "./components/Poster";
 import Films from "./components/Films";
 import SmoothScroll from "./helpers/SmoothScroll";
 import Demo from "./components/Demo";
+
 const App = () => {
   const [loading, setLoading] = useState(true);
   return (
