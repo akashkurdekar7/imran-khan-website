@@ -136,7 +136,7 @@ const Background = ({ bgRef }: BackgroundProps) => {
         });
       });
 
-      time += 0.001;
+      time += 0.009;
 
       animationId = requestAnimationFrame(draw);
     }
