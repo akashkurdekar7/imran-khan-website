@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Background from "../helpers/Background";
 import heroImage from "/hero.png";
+import WaveText from "./WaveText";
 
 const Footer = () => {
   const footerBg = useRef({
@@ -28,7 +29,7 @@ const Footer = () => {
               />
             </svg>
           </div>
-          <h3 className="w-max text-mina text-[90px] z-10 uppercase text-center absolute left-1/2 top-[35%] -translate-x-1/2 -translate-y-1/2">
+          <h3 className="w-max text-mina size90 z-10 uppercase text-center absolute left-1/2 top-[35%] -translate-x-1/2 -translate-y-1/2">
             always
             <br />
             bringing the
@@ -42,28 +43,42 @@ const Footer = () => {
           />
         </div>
         <div className="absolute right-20 top-1/2 -translate-y-1/2 z-20 text-right">
-          <p className="text-black uppercase text-sm mb-6 tracking-widest">
+          <p className="text-mina uppercase text-sm mb-6 tracking-widest">
             Connect
           </p>
           <ul className="space-y-3 text-black text-4xl text-mina uppercase">
-            <li className="cursor-pointer hover:text-[#fff403]">Github</li>
-            <li className="cursor-pointer hover:text-[#fff403]">LinkedIn</li>
-            <li className="cursor-pointer hover:text-[#fff403]">Instagram</li>
-            <li className="cursor-pointer hover:text-[#fff403]">Behance</li>
+            <li>
+              <WaveText
+                text="g-mail"
+                className="text-7xl font-bold uppercase"
+              />
+            </li>
+            <li>
+              <WaveText
+                text="Github"
+                className="text-7xl font-bold uppercase"
+              />
+            </li>
+
+            <li>
+              <WaveText
+                text="Instagram"
+                className="text-7xl font-bold uppercase"
+              />
+            </li>
+            <li>
+              <WaveText
+                text="LinkedIn"
+                className="text-7xl font-bold uppercase"
+              />
+            </li>
           </ul>
         </div>
         <div className="absolute left-20 top-1/2 -translate-y-1/2 z-20">
-          <p className="text-black uppercase text-sm mb-6 tracking-widest">
-            Navigation
+          <p className="text-mina uppercase text-sm mb-6 tracking-widest">
+            other projects
           </p>
-
-          <ul className="space-y-3 text-black text-4xl text-mina uppercase">
-            <li className="cursor-pointer hover:text-[#fff403]">Home</li>
-            <li className="cursor-pointer hover:text-[#fff403]">About</li>
-            <li className="cursor-pointer hover:text-[#fff403]">Projects</li>
-            <li className="cursor-pointer hover:text-[#fff403]">Experience</li>
-            <li className="cursor-pointer hover:text-[#fff403]">Contact</li>
-          </ul>
+          <div className="border w-50 h-50"></div>
         </div>
       </div>
       <div className="absolute left-10 bottom-6 text-black text-sm z-20">

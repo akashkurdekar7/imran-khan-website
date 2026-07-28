@@ -115,3 +115,10 @@
   -webkit-mask-size: contain; /* or cover */
   mask-size: contain;
 }
+
+.size90 {
+  font-size: 90px;
+  @media 1536 {
+    font-size: 76px;
+  }
+}

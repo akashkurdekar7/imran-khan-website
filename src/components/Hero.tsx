@@ -146,7 +146,7 @@ const Hero = () => {
       const signatureTl = gsap.timeline({
         scrollTrigger: {
           trigger: signatureRef.current,
-          start: "top top-=500",
+          start: "top top-=300",
           end: "+=800",
           scrub: 1,
           markers: true,
