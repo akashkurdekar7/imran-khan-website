@@ -18,12 +18,12 @@ const App = () => {
       <Cursor />
       <Header />
       <Hero />
-      {/*  <Article />
+      <Article />
       <Films />
       <Poster />
-      <Demo /> */}
+      {/* <Demo /> */}
       <Footer />
-      {/* {loading && <Loader onComplete={() => setLoading(false)} />} */}
+      {loading && <Loader onComplete={() => setLoading(false)} />}
     </div>
   );
 };
