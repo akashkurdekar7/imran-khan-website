@@ -8,6 +8,7 @@ import Poster from "./components/Poster";
 import Films from "./components/Films";
 import SmoothScroll from "./helpers/SmoothScroll";
 import Demo from "./components/Demo";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -21,7 +22,8 @@ const App = () => {
       <Films />
       <Poster />
       <Demo />
-      {loading && <Loader onComplete={() => setLoading(false)} />}
+      <Footer />
+      {/* {loading && <Loader onComplete={() => setLoading(false)} />} */}
     </div>
   );
 };
