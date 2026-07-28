@@ -215,8 +215,9 @@ const Films = () => {
       gsap.set(".text-reveal2", {
         xPercent: -150,
       });
+      gsap.utils.toArray(".text-frame2").forEach((el) => {
+        const frame = el as HTMLElement;
 
-      gsap.utils.toArray(".text-frame2").forEach((frame) => {
         gsap.to(frame.querySelectorAll(".text-reveal2"), {
           xPercent: 300,
           stagger: 0.15,
@@ -226,10 +227,23 @@ const Films = () => {
             start: "left 70%",
             end: "+=100",
             scrub: 3,
-            toggleActions: "once",
           },
         });
       });
+      // gsap.utils.toArray(".text-frame2").forEach((frame) => {
+      //   gsap.to(frame.querySelectorAll(".text-reveal2"), {
+      //     xPercent: 300,
+      //     stagger: 0.15,
+      //     scrollTrigger: {
+      //       trigger: frame,
+      //       containerAnimation: horizontalTween,
+      //       start: "left 70%",
+      //       end: "+=100",
+      //       scrub: 3,
+      //       toggleActions: "once",
+      //     },
+      //   });
+      // });
     }, sectionRef);
 
     return () => ctx.revert();

@@ -7,7 +7,6 @@ import Article from "./components/Article";
 import Poster from "./components/Poster";
 import Films from "./components/Films";
 import SmoothScroll from "./helpers/SmoothScroll";
-import Demo from "./components/Demo";
 import Footer from "./components/Footer";
 
 const App = () => {
