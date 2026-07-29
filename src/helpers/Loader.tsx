@@ -1,5 +1,5 @@
 import { useGSAP } from "@gsap/react";
-import {  useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 gsap.registerPlugin(useGSAP);
 
@@ -8,29 +8,28 @@ const values = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 interface LoaderProps {
   onComplete: () => void;
 }
-  const Loader = ({ onComplete }: LoaderProps) => {
-
+const Loader = ({ onComplete }: LoaderProps) => {
   const stackRef = useRef(null);
   const loaderRef = useRef(null);
 
-useGSAP(() => {
-  const tl = gsap.timeline();
+  useGSAP(() => {
+    const tl = gsap.timeline();
 
-  tl.to(stackRef.current, {
-    y: -(values.length - 1) * 100,
-    duration: 3,
-    ease: "power4.inOut",
-  });
+    tl.to(stackRef.current, {
+      y: -(values.length - 1) * 100,
+      duration: 3,
+      ease: "power4.inOut",
+    });
 
-  tl.to(loaderRef.current, {
-    yPercent: -100,
-    duration: 1,
-    ease: "power4.inOut",
-    onComplete,
-  });
+    tl.to(loaderRef.current, {
+      yPercent: -100,
+      duration: 1,
+      ease: "power4.inOut",
+      onComplete,
+    });
 
-  return () => tl.kill();
-}, [onComplete]);
+    return () => tl.kill();
+  }, [onComplete]);
 
   return (
     <section
@@ -50,8 +49,8 @@ useGSAP(() => {
         </div>
       </div>
 
-      <h1 className="absolute bottom-12 uppercase tracking-[0.3em]">
-        Loading Lost Khan...
+      <h1 className=" text-black absolute bottom-12 uppercase tracking-[0.1em] text-mina">
+        Lost Khan
       </h1>
     </section>
   );

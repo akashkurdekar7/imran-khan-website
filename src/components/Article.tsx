@@ -4,10 +4,24 @@ import { useLayoutEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const video1 = "/article/video1.mp4";
-const video2 = "/article/video2.mp4";
-const video3 = "/article/video3.mp4";
-const video4 = "/article/video4.mp4";
+const videos = [
+  {
+    src: "/article/video1.mp4",
+    title: "Jaane Tu... Ya Jaane Na",
+  },
+  {
+    src: "/article/video2.mp4",
+    title: "I Hate Luv Storys",
+  },
+  {
+    src: "/article/video3.mp4",
+    title: "Break Ke Baad",
+  },
+  {
+    src: "/article/video4.mp4",
+    title: "Delhi Belly",
+  },
+];
 const Article = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -48,8 +62,11 @@ const Article = () => {
     return () => ctx.revert();
   }, []);
 
-  const renderVideo = ({ src }: { src: string }) => (
-    <div className="reveal-video w-[180px] h-[90px] md:w-[240px] md:h-[120px] overflow-hidden rounded-full border border-white shrink-0">
+  const renderVideo = ({ src, title }: { src: string; title: string }) => (
+    <div
+      data-cursor={title}
+      className="reveal-video w-[180px] h-[90px] md:w-[240px] md:h-[120px] overflow-hidden rounded-full border border-white shrink-0"
+    >
       <video
         className="w-full h-full object-cover"
         src={src}
@@ -65,7 +82,7 @@ const Article = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-[#000000] flex items-center justify-center px-8"
+      className="min-h-screen  flex items-center justify-center px-8"
     >
       <div className=" mx-auto text-center">
         <div
@@ -75,7 +92,7 @@ tracking-tight text-[90px] xl:text-[150px] text-white uppercase leading-none tex
           <div className="flex items-center justify-center gap-8 w-full ">
             <span className="text-mest reveal-text leading-none">Some</span>
 
-            {renderVideo({ src: video1 })}
+            {renderVideo(videos[0])}
 
             <span className="text-mina reveal-text leading-none">Movies</span>
           </div>
@@ -85,19 +102,20 @@ tracking-tight text-[90px] xl:text-[150px] text-white uppercase leading-none tex
 
             <span className="text-mest reveal-text">Famous</span>
 
-            {renderVideo({ src: video2 })}
+            {renderVideo(videos[1])}
           </div>
 
           <div className="flex items-center justify-center gap-8 w-full ">
             <span className="text-mest reveal-text">Some</span>
-            {renderVideo({ src: video3 })}
+            {renderVideo(videos[2])}
+
             <span className="text-mest reveal-text leading-none">Become</span>
             <span className="text-mest reveal-text leading-none">A</span>
           </div>
 
           <div className="flex items-center justify-center gap-8 w-full ">
             <span className="text-mina reveal-text leading-none">Memory</span>
-            {renderVideo({ src: video4 })}
+            {renderVideo(videos[3])}
           </div>
         </div>
       </div>

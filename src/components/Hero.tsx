@@ -4,8 +4,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Background from "../helpers/Background";
 gsap.registerPlugin(ScrollTrigger);
-
-const Hero = () => {
+type HeroProps = {
+  bgRef: React.MutableRefObject<{
+    color: string;
+    lineColor: string;
+  }>;
+};
+const Hero = ({ bgRef }: HeroProps) => {
   const pinRef = useRef(null);
   const contentRef = useRef(null);
   const signatureRef = useRef<HTMLDivElement>(null);
@@ -15,10 +20,10 @@ const Hero = () => {
     lineColor: "rgba(0,0,0,.1)",
   });
 
-  const marqueeBg = useRef({
-    color: "#fff",
-    lineColor: "#000",
-  });
+  // const marqueeBg = useRef({
+  //   color: "#fff",
+  //   lineColor: "#000",
+  // });
 
   const marqueeText1 = "ACTOR • DIRECTOR • WRITER • PRODUCER •";
   const marqueeText2 =
@@ -38,8 +43,11 @@ const Hero = () => {
         opacity: 0,
       });
       gsap.set(".era-logo", {
-        scaleX: 0,
-        transformOrigin: "center center",
+        y: 100,
+      });
+      gsap.set(".signature", {
+        autoAlpha: 0,
+        scale: 0.9,
       });
 
       tl.to(
@@ -61,7 +69,7 @@ const Hero = () => {
         0.1 // starts halfway through the timeline
       );
       tl.to(
-        marqueeBg.current,
+        bgRef.current,
         {
           color: "#1e1e1e",
           lineColor: "#000",
@@ -88,15 +96,59 @@ const Hero = () => {
         },
         0.12
       );
-
       tl.to(
         ".era-logo",
         {
-          scaleX: 1,
-          duration: 0.8,
-          ease: "power4.out",
+          y: 0,
+          ease: "none",
         },
-        0.1
+        0.09
+      );
+      const path = document.querySelector(".signature-path") as SVGPathElement;
+
+      const length = path.getTotalLength();
+
+      gsap.set(".signature", {
+        autoAlpha: 1,
+      });
+
+      gsap.set(path, {
+        strokeDasharray: length,
+        strokeDashoffset: length,
+        fill: "transparent",
+      });
+
+      tl.fromTo(
+        ".signature",
+        {
+          autoAlpha: 0,
+          scale: 0.95,
+          y: 20,
+        },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          y: 0,
+          ease: "power2.out",
+        },
+        0.15
+      );
+
+      tl.to(
+        path,
+        {
+          strokeDashoffset: 0,
+          ease: "none",
+        },
+        ">"
+      );
+
+      tl.to(
+        path,
+        {
+          fill: "#fff",
+        },
+        ">"
       );
     });
 
@@ -140,50 +192,7 @@ const Hero = () => {
 
     return () => ctx.revert();
   }, []);
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const signatureTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: signatureRef.current,
-          start: "top top-=300",
-          end: "+=800",
-          scrub: 1,
-          markers: true,
-        },
-      });
 
-      const paths = gsap.utils
-        .toArray<SVGPathElement>(".signature-path")
-        .reverse();
-
-      paths.forEach((path) => {
-        const length = path.getTotalLength();
-
-        gsap.set(path, {
-          fill: "transparent",
-          strokeDasharray: length,
-          strokeDashoffset: length,
-        });
-
-        signatureTl
-          .to(path, {
-            strokeDashoffset: 0,
-            duration: 0.4,
-            ease: "none",
-          })
-          .to(
-            path,
-            {
-              fill: "#fff", // or any color you want
-              duration: 0.15,
-            },
-            "-=0.05" // slightly overlaps the end of the stroke
-          );
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
   return (
     <div ref={pinRef} className="hero relative h-screen overflow-hidden ">
       <section className="absolute inset-0 z-20" ref={contentRef}>
@@ -195,11 +204,11 @@ const Hero = () => {
                 Actor
               </li>
 
-              <li className="text-[14px] font-medium tracking-[0.35em] leading-none text-mina">
+              <li className="text-[12px] font-medium tracking-[0.35em] leading-none text-mina">
                 Since 2008
               </li>
 
-              <li className="text-[14px] font-medium tracking-[0.35em] leading-none text-mina">
+              <li className="text-[12px] font-medium tracking-[0.35em] leading-none text-mina">
                 India
               </li>
             </ul>
@@ -228,7 +237,7 @@ const Hero = () => {
                   <br />
                   feel effortless.
                 </p>
-                <div className="w-20 h-[2px] bg-black/20 mt-3" />
+                <div className="w-10 h-[2px] bg-black/20 mt-3" />
               </div>
             </div>
           </div>
@@ -255,31 +264,32 @@ const Hero = () => {
         </svg>
       </div>
       <section className="absolute h-screen top-0 left-0 right-0 z-6 flex flex-col justify-center">
-        <Background bgRef={marqueeBg} />
-        <div className="era-logo absolute left-1/2 top-40 -translate-x-1/2 z-20 flex items-center gap-5">
-          <span className="h-px w-14 bg-white/40" />
+        <div className=" absolute left-1/2 top-40 -translate-x-1/2 z-20  overflow-hidden">
+          <div className="era-logo flex items-center gap-5">
+            <span className="h-px w-14 bg-white/40" />
 
-          <div className="flex flex-col items-center">
-            <svg
-              className="mb-2 h-6 w-6"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="1.5"
-            >
-              <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9Z" />
-            </svg>
+            <div className="flex flex-col items-center">
+              <svg
+                className="mb-2 h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                strokeWidth="1.5"
+              >
+                <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9Z" />
+              </svg>
 
-            <span className="text-mina text-[18px] tracking-[0.35em] uppercase text-white mix-blend-difference">
-              THE ROMANCE ARCHIVE
-            </span>
+              <span className="text-mina text-[18px] tracking-[0.35em] uppercase text-white mix-blend-difference">
+                THE ROMANCE ARCHIVE
+              </span>
 
-            <span className="mt-2 text-xs tracking-[0.6em] text-white/60 uppercase">
-              EST. 2008
-            </span>
+              <span className="mt-2 text-xs tracking-[0.6em] text-white/60 uppercase">
+                EST. 2008
+              </span>
+            </div>
+
+            <span className="h-px w-14 bg-white/40" />
           </div>
-
-          <span className="h-px w-14 bg-white/40" />
         </div>
         <div className="overflow-hidden">
           <div className="marquee-left whitespace-nowrap flex">

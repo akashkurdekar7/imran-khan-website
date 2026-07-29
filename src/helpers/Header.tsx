@@ -10,11 +10,12 @@ const Header = () => {
 
     gsap.to(".header", {
       scale: 1,
+      color: "#fff",
       ease: "none",
       scrollTrigger: {
         trigger: ".hero", // or ".hero"
         start: "top top",
-        end: "+=200%",
+        end: "+=100%",
         scrub: true,
       },
     });

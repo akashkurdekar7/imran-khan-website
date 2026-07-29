@@ -4,7 +4,6 @@ import { useLayoutEffect, useRef } from "react";
 import star from "/stickers/star.png";
 import tape from "/stickers/tape.png";
 import whiteTape from "/stickers/white-tape.png";
-import Background from "../helpers/Background";
 gsap.registerPlugin(ScrollTrigger);
 const slide1 = "/films/slide1.png";
 const slide2 = "/films/slide2.png";
@@ -110,29 +109,35 @@ const frames = [
   },
 ];
 
-const colors = [
-  {
-    color: "#fff403",
-    lineColor: "#000",
-  },
-  {
-    color: "#000",
-    lineColor: "#fff",
-  },
-  {
-    color: "#ffffff",
-    lineColor: "rgba(0,0,0,.1)",
-  },
-];
+// const colors = [
+//   {
+//     color: "#fff",
+//     lineColor: "#000",
+//   },
+//   {
+//     color: "#fff",
+//     lineColor: "#000",
+//   },
+//   {
+//     color: "#ffffff",
+//     lineColor: "#000",
+//   },
+// ];
+type FilmsProps = {
+  bgRef: React.MutableRefObject<{
+    color: string;
+    lineColor: string;
+  }>;
+};
 
-const Films = () => {
+const Films = ({ bgRef }: FilmsProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const filmsRef = useRef({
-    color: "#fff",
-    lineColor: "rgba(0,0,0,.1)",
-  });
+  // const filmsRef = useRef({
+  //   color: "#000",
+  //   lineColor: "rgb(216, 216, 216)",
+  // });
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const container = containerRef.current!;
@@ -180,21 +185,21 @@ const Films = () => {
           start: "left center",
           end: "right center",
 
-          onEnter: () => {
-            gsap.to(filmsRef.current, {
-              ...colors[i],
-              ease: "power2.inOut",
-              overwrite: "auto",
-            });
-          },
+          // onEnter: () => {
+          //   gsap.to(filmsRef.current, {
+          //     ...colors[i],
+          //     ease: "power2.inOut",
+          //     overwrite: "auto",
+          //   });
+          // },
 
-          onEnterBack: () => {
-            gsap.to(filmsRef.current, {
-              ...colors[i],
-              ease: "power2.inOut",
-              overwrite: "auto",
-            });
-          },
+          // onEnterBack: () => {
+          //   gsap.to(filmsRef.current, {
+          //     ...colors[i],
+          //     ease: "power2.inOut",
+          //     overwrite: "auto",
+          //   });
+          // },
         });
       });
       gsap.set(".text-reveal", {
@@ -230,6 +235,11 @@ const Films = () => {
           },
         });
       });
+      gsap.to(bgRef.current, {
+        color: "#FFF2B2",
+        lineColor: "#8A6F00",
+        duration: 0.8,
+      });
       // gsap.utils.toArray(".text-frame2").forEach((frame) => {
       //   gsap.to(frame.querySelectorAll(".text-reveal2"), {
       //     xPercent: 300,
@@ -250,7 +260,6 @@ const Films = () => {
   }, []);
   return (
     <section ref={sectionRef} className="relative h-screen overflow-hidden ">
-      <Background bgRef={filmsRef} />
       <div className="" ref={contentRef}>
         <div
           ref={containerRef}
