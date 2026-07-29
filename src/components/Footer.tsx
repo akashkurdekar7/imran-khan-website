@@ -49,13 +49,16 @@ const Footer = () => {
           <ul className="space-y-3 text-black text-4xl text-mina uppercase">
             <li>
               <WaveText
-                text="g-mail"
+                text="Gmail"
+                link="mailto:akash@example.com"
                 className="text-7xl font-bold uppercase"
               />
             </li>
+
             <li>
               <WaveText
-                text="Github"
+                text="GitHub"
+                link="https://github.com/yourusername"
                 className="text-7xl font-bold uppercase"
               />
             </li>
@@ -63,12 +66,15 @@ const Footer = () => {
             <li>
               <WaveText
                 text="Instagram"
+                link="https://instagram.com/yourusername"
                 className="text-7xl font-bold uppercase"
               />
             </li>
+
             <li>
               <WaveText
                 text="LinkedIn"
+                link="https://linkedin.com/in/yourusername"
                 className="text-7xl font-bold uppercase"
               />
             </li>
@@ -81,12 +87,26 @@ const Footer = () => {
           <div className="border w-50 h-50"></div>
         </div>
       </div>
-      <div className="absolute left-10 bottom-6 text-black text-sm z-20">
-        © 2026 Akash Kurdekar. All rights reserved.
+      <div className="absolute left-10 bottom-6 text-black text-sm z-20 flex items-center">
+        <span>© 2026</span>
+        <WaveText
+          link="mailto:yourname@gmail.com"
+          text="Akash Kurdekar"
+          className="text-7xl font-bold uppercase"
+        />
+        <span>. All rights reserved.</span>
       </div>
       <div className="absolute right-10 bottom-6 flex gap-8 text-black text-sm font-semibold uppercase z-20">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <WaveText
+          link="mailto:yourname@gmail.com"
+          text="Privacy"
+          className="text-7xl font-bold uppercase"
+        />
+        <WaveText
+          link="mailto:yourname@gmail.com"
+          text="Terms"
+          className="text-7xl font-bold uppercase"
+        />
       </div>
     </footer>
   );

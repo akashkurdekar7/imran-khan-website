@@ -8,7 +8,7 @@ import Poster from "./components/Poster";
 import Films from "./components/Films";
 import SmoothScroll from "./helpers/SmoothScroll";
 import Footer from "./components/Footer";
-import Practise from "./components/Practise";
+// import Practise from "./components/Practise";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -16,15 +16,15 @@ const App = () => {
     <div className="relative min-h-screen overflow-hidden ">
       <SmoothScroll />
       <Cursor />
-      {/* <Header />
+      <Header />
       <Hero />
       <Article />
-      <Films /> */}
-      <Practise />
+      <Films />
+      {/* <Practise /> */}
       <Poster />
       {/* <Demo /> */}
       <Footer />
-      {/* {loading && <Loader onComplete={() => setLoading(false)} />} */}
+      {loading && <Loader onComplete={() => setLoading(false)} />}
     </div>
   );
 };

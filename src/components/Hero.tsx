@@ -37,11 +37,11 @@ const Hero = () => {
       gsap.set([".marquee-left", ".marquee-right"], {
         opacity: 0,
       });
-      gsap.set(".year", {
-        scale: 5,
-        xPercent: -50,
-        opacity: 0,
+      gsap.set(".era-logo", {
+        scaleX: 0,
+        transformOrigin: "center center",
       });
+
       tl.to(
         contentRef.current,
         {
@@ -54,7 +54,7 @@ const Hero = () => {
       tl.to(
         heroBg.current,
         {
-          color: "#fff403",
+          color: "#A39B00",
           lineColor: "#fff403",
           duration: 0.5,
         },
@@ -69,17 +69,6 @@ const Hero = () => {
         0.05
       );
 
-      tl.to(
-        ".year",
-        {
-          scale: 1,
-          xPercent: -50,
-          opacity: 1,
-          y: -30,
-          ease: "power2.out",
-        },
-        0
-      );
       tl.to(
         ".hero-hide",
         {
@@ -98,6 +87,16 @@ const Hero = () => {
           ease: "power2.out",
         },
         0.12
+      );
+
+      tl.to(
+        ".era-logo",
+        {
+          scaleX: 1,
+          duration: 0.8,
+          ease: "power4.out",
+        },
+        0.1
       );
     });
 
@@ -190,9 +189,6 @@ const Hero = () => {
       <section className="absolute inset-0 z-20" ref={contentRef}>
         <Background bgRef={heroBg} />
         <div className="h-full relative">
-          <span className="year absolute -top-20 left-1/2   text-mina text-[36px] tracking-[2px] w-max">
-            THE ERA OF ROMANTIC CINEMA
-          </span>
           <div className="hero-hide absolute top-8 right-8 md:top-10 md:right-10">
             <ul className="flex flex-col items-end gap-2 uppercase text-right ">
               <li className="text-[12px]  font-medium tracking-[0.35em] leading-none text-mina">
@@ -260,7 +256,31 @@ const Hero = () => {
       </div>
       <section className="absolute h-screen top-0 left-0 right-0 z-6 flex flex-col justify-center">
         <Background bgRef={marqueeBg} />
+        <div className="era-logo absolute left-1/2 top-40 -translate-x-1/2 z-20 flex items-center gap-5">
+          <span className="h-px w-14 bg-white/40" />
 
+          <div className="flex flex-col items-center">
+            <svg
+              className="mb-2 h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="1.5"
+            >
+              <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9Z" />
+            </svg>
+
+            <span className="text-mina text-[18px] tracking-[0.35em] uppercase text-white mix-blend-difference">
+              THE ROMANCE ARCHIVE
+            </span>
+
+            <span className="mt-2 text-xs tracking-[0.6em] text-white/60 uppercase">
+              EST. 2008
+            </span>
+          </div>
+
+          <span className="h-px w-14 bg-white/40" />
+        </div>
         <div className="overflow-hidden">
           <div className="marquee-left whitespace-nowrap flex">
             {[1, 2, 3].map((_, i) => (
