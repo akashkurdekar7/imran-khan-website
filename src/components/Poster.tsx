@@ -7,7 +7,7 @@ const Poster = () => {
     <section className="bg-black poster-section">
       <img src={image} className="w-full h-full object-cover" />
       <div className="grid grid-cols-2 gap-4 px-10 py-10">
-        <div className=" text-mina text-[80px] uppercase flex flex-col  items-start justify-start">
+        <div className=" text-mina text-[56px] uppercase flex flex-col items-start justify-start">
           <h2 className="text-[#fff403] leading-none">films</h2>
           <h2 className="text-white leading-none">in the heart</h2>
         </div>

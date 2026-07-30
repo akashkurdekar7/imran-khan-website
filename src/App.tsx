@@ -9,6 +9,8 @@ import Films from "./components/Films";
 import SmoothScroll from "./helpers/SmoothScroll";
 import Footer from "./components/Footer";
 import Background from "./helpers/Background";
+import Practise from "./components/Practise";
+import Author from "./components/Author";
 // import Practise from "./components/Practise";
 // import Demo from "./components/Demo";
 
@@ -24,14 +26,14 @@ const App = () => {
       <Background bgRef={bgRef} />
       <Cursor />
       <Header />
-      <Hero bgRef={bgRef} />
+      {/* <Hero bgRef={bgRef} />
       <Article />
-      <Films bgRef={bgRef} />
+      <Films bgRef={bgRef} /> */}
       <Poster />
-      {/* <Practise /> */}
+      <Author />
       {/* <Demo /> */}
       <Footer />
-      {loading && <Loader onComplete={() => setLoading(false)} />}
+      {/* {loading && <Loader onComplete={() => setLoading(false)} />} */}
     </div>
   );
 };

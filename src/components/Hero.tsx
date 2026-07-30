@@ -30,11 +30,12 @@ const Hero = ({ bgRef }: HeroProps) => {
     "JAANE TU... YA JAANE NA • KIDNAP • LUCK • I HATE LUV STORYS • BREAK KE BAAD • DELHI BELLY • MERE BROTHER KI DULHAN • MATRU KI BIJLEE KA MANDOLA •";
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      const reveal = 0.1;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
           start: "top top",
-          end: "+=200%",
+          end: "+=100%",
           pin: true,
           scrub: true,
         },
@@ -58,51 +59,6 @@ const Hero = ({ bgRef }: HeroProps) => {
           ease: "none",
         },
         0
-      );
-      tl.to(
-        heroBg.current,
-        {
-          color: "#A39B00",
-          lineColor: "#fff403",
-          duration: 0.5,
-        },
-        0.1 // starts halfway through the timeline
-      );
-      tl.to(
-        bgRef.current,
-        {
-          color: "#1e1e1e",
-          lineColor: "#000",
-        },
-        0.05
-      );
-
-      tl.to(
-        ".hero-hide",
-        {
-          opacity: 0,
-          y: -30,
-          ease: "power2.out",
-          duration: 0.1,
-        },
-        0.09
-      );
-      tl.to(
-        [".marquee-left", ".marquee-right"],
-        {
-          opacity: 1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        0.12
-      );
-      tl.to(
-        ".era-logo",
-        {
-          y: 0,
-          ease: "none",
-        },
-        0.09
       );
       const path = document.querySelector(".signature-path") as SVGPathElement;
 
@@ -130,25 +86,69 @@ const Hero = ({ bgRef }: HeroProps) => {
           scale: 1,
           y: 0,
           ease: "power2.out",
+          duration: 0.4,
         },
-        0.15
+        reveal
       );
 
       tl.to(
         path,
         {
           strokeDashoffset: 0,
+          duration: 0.8,
           ease: "none",
         },
-        ">"
+        reveal
+      );
+
+      tl.to(path, {
+        fill: "#fff",
+        duration: 0.15,
+      });
+      tl.to(
+        heroBg.current,
+        {
+          color: "#A39B00",
+          lineColor: "#fff403",
+          duration: 0.5,
+        },
+        0.1 // starts halfway through the timeline
+      );
+      tl.to(
+        bgRef.current,
+        {
+          color: "#1e1e1e",
+          lineColor: "#000",
+        },
+        0.05
       );
 
       tl.to(
-        path,
+        ".hero-hide",
         {
-          fill: "#fff",
+          opacity: 0,
+          y: -30,
+          ease: "power2.out",
+          duration: 0.1,
         },
-        ">"
+        reveal
+      );
+      tl.to(
+        [".marquee-left", ".marquee-right"],
+        {
+          opacity: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        },
+        0.12
+      );
+      tl.to(
+        ".era-logo",
+        {
+          y: 0,
+          ease: "none",
+        },
+        reveal
       );
     });
 
@@ -320,13 +320,6 @@ const Hero = ({ bgRef }: HeroProps) => {
             ))}
           </div>
         </div>
-        {/* <div className="absolute bottom-5 right-5 rounded-lg bg-black/5 backdrop-blur-[2px] p-4">
-          <p className="text-[16px] text-mest ">
-            An editorial tribute to Imran Khan's
-            <br />
-            unforgettable coming-of-age era.
-          </p>
-        </div> */}
       </section>
     </div>
   );

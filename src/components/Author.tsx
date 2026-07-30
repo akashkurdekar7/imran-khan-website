@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import {
   FaInstagram,
   FaLinkedin,
@@ -33,7 +33,8 @@ const cards = [
   { x: 180, rotate: 7, scale: 0.92 },
   { x: 360, rotate: 14, scale: 0.84 },
 ];
-const Practise = () => {
+
+const Author = () => {
   const [iconIndex, setIconIndex] = useState(0);
   const iconRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -158,7 +159,9 @@ const Practise = () => {
           return (
             <div
               key={i}
-              ref={(el) => (cardsRef.current[i] = el!)}
+              ref={(el) => {
+                cardsRef.current[i] = el!;
+              }}
               className="absolute h-[580px] w-[320px] overflow-hidden rounded-[40px] shadow-2xl cursor-pointer"
             >
               <img
@@ -171,18 +174,15 @@ const Practise = () => {
       </div>{" "}
       <div className="mt-14 text-center">
         <p className="text-neutral-500">Follow Akash on social media</p>
-
-        <div className="">
-          <ul>
-            <li>instagram</li>
-            <li>instagram</li>
-            <li>instagram</li>
-            <li>instagram</li>
-          </ul>
-        </div>
+        <ul className="flex gap-2 items-center justify-center text-mina text-[18px]">
+          <li className="text-mina">instagram</li>
+          <li>instagram</li>
+          <li>instagram</li>
+          <li>instagram</li>
+        </ul>
       </div>
     </section>
   );
 };
 
-export default Practise;
+export default Author;

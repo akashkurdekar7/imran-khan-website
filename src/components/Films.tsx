@@ -272,7 +272,9 @@ const Films = ({ bgRef }: FilmsProps) => {
                 <span className="mix-blend-difference text-white">
                   Jaane Tu... Ya Jaane Na, 2008
                 </span>
-                <span className="uppercase">jai, aditi and meghna</span>
+                <span className="mix-blend-difference text-white uppercase">
+                  jai, aditi and meghna
+                </span>
               </div>
               <img
                 src={frames[0].image}
@@ -284,20 +286,20 @@ const Films = ({ bgRef }: FilmsProps) => {
             <div className="text-frame absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] text-[16px] max-w-[250px] flex flex-col gap-4">
               <p className="relative inline-block overflow-hidden">
                 <span className="text-reveal absolute inset-0 bg-yellow-300 z-10"></span>
-                <span className="relative z-20 mix-blend-difference text-black">
+                <span className="relative z-20 mix-blend-difference text-white">
                   "You know..."
                 </span>
               </p>
 
               <p className="relative inline-block overflow-hidden">
                 <span className="text-reveal absolute inset-0 bg-yellow-300 z-10"></span>
-                <span className="relative z-20 mix-blend-difference text-black">
+                <span className="relative z-20 mix-blend-difference text-white">
                   Sometimes I think love isn't supposed to be complicated.
                 </span>
               </p>
             </div>
 
-            <div className="scene1-quote absolute left-[20%] translate-x-[-50%] top-[90%] translate-y-[-50%] text-[16px] flex flex-col gap-4">
+            <div className="scene1-quote mix-blend-difference text-white absolute left-[20%] translate-x-[-50%] top-[90%] translate-y-[-50%] text-[16px] flex flex-col gap-4">
               <p>
                 its all about
                 <br />
@@ -312,13 +314,13 @@ const Films = ({ bgRef }: FilmsProps) => {
                 alt={frames[1].image}
                 className="w-full h-full object-cover"
               />
-              <span className="text-[12px] uppercase">
+              <span className="text-[12px] mix-blend-difference text-white uppercase">
                 pappu cant Dance saLA**
               </span>
             </div>
             {/* slide 3 */}
             <div className="scene1-photo4 absolute left-[72%] translate-x-[-50%] top-[30%] translate-y-[-50%] flex flex-col gap-2">
-              <span className="text-[12px] uppercase">
+              <span className="text-[12px] uppercase mix-blend-difference text-white">
                 Bollywoord{" "}
                 <span className="relative inline-block">
                   <span className="absolute inset-0 bg-blue-500 blur-sm rounded"></span>
@@ -335,7 +337,7 @@ const Films = ({ bgRef }: FilmsProps) => {
           <div className="scene scene2 relative w-screen h-screen ">
             {/* slide 4 */}
             <div className="scene2-photo1 absolute -left-[10%]  top-1/2 -translate-y-1/2 flex flex-col gap-2">
-              <span className="text-[12px] uppercase ">
+              <span className="text-[12px] uppercase mix-blend-difference text-white">
                 hojata hai yaar voh kya train ka ticket
                 <br />
                 hai jisko paheli book karlo nhi ho jatta hai
@@ -345,7 +347,7 @@ const Films = ({ bgRef }: FilmsProps) => {
                 alt={frames[3].image}
                 className="w-full h-full object-cover"
               />
-              <div className="flex  justify-between items-center">
+              <div className="flex  justify-between items-center mix-blend-difference text-white">
                 <p className="text-[12px] uppercase">i hate luv storys, 2010</p>
                 <p className="text-[12px] uppercase">jay, simran and raj</p>
               </div>
@@ -363,12 +365,12 @@ const Films = ({ bgRef }: FilmsProps) => {
                 className="w-full h-full object-cover"
               />
               <div className="flex  justify-between items-center">
-                <p className="text-[12px] uppercase">
+                <p className="text-[12px] uppercase mix-blend-difference text-white">
                   break ke baad
                   <br />
                   2010
                 </p>
-                <p className="text-[12px] uppercase">
+                <p className="text-[12px] uppercase mix-blend-difference text-white">
                   abhay, aaliya
                   <br />
                   nats, cyrus
@@ -387,15 +389,19 @@ const Films = ({ bgRef }: FilmsProps) => {
             <div className="text-frame2 absolute left-[75%] top-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col gap-0 ">
               <p className="relative overflow-hidden w-fit">
                 <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
-                <span className="relative ">main apne life ke har</span>
+                <span className="relative mix-blend-difference text-white">
+                  main apne life ke har
+                </span>
               </p>
 
               <p className="relative overflow-hidden w-fit">
                 <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
-                <span className="relative">scene</span>
+                <span className="relative mix-blend-difference text-white">
+                  scene
+                </span>
               </p>
 
-              <p className="relative overflow-hidden w-fit">
+              <p className="relative overflow-hidden w-fit mix-blend-difference text-white">
                 <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
                 <span className="relative">mein na star hoon...</span>
               </p>
@@ -413,9 +419,9 @@ const Films = ({ bgRef }: FilmsProps) => {
                 alt={frames[6].image}
                 className="w-full h-full object-cover"
               />
-              <div className="text-[12px] uppercase flex  justify-between items-center">
+              <div className="text-[12px] uppercase flex  justify-between items-center mix-blend-difference text-white">
                 <p>ek main aur ekk tu, 2012</p>
-                <p>rahul & riana</p>
+                <p className="text-end">rahul & riana</p>
               </div>
             </div>
           </div>
@@ -457,12 +463,12 @@ const Films = ({ bgRef }: FilmsProps) => {
                 alt={frames[7].image}
                 className="w-full h-full object-cover"
               />
-              <p className="text-[12px] uppercase">
+              <p className="text-[12px] uppercase mix-blend-difference text-white">
                 magent of opp attract each other
               </p>
             </div>
 
-            <div className="scene3-photo3  absolute left-[45%] top-1/2 -translate-y-1/2 -translate-x-1/2">
+            <div className="scene3-photo3  absolute left-[45%] top-1/2 -translate-y-1/2 -translate-x-1/2 mix-blend-difference text-white">
               <p className="">
                 Lorem ipsum dolor sit amet consectetur,
                 <br />
@@ -493,13 +499,13 @@ const Films = ({ bgRef }: FilmsProps) => {
                 alt={frames[7].image}
                 className="w-full h-full object-cover"
               />
-              <div className="flex  justify-between items-center">
+              <div className="flex  justify-between items-center mix-blend-difference text-white">
                 <p className="text-[12px] uppercase">
                   Mere Brother Ki Dulhan
                   <br />
                   2011
                 </p>
-                <p className="text-[12px] uppercase">
+                <p className="text-[12px] uppercase text-end">
                   kush & dimple
                   <br />
                   luv & piali
