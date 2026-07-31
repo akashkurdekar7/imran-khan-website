@@ -26,9 +26,9 @@ const App = () => {
       <SmoothScroll />
       <Background bgRef={bgRef} />
       <Cursor />
-      {/* <Header />
+      <Header />
       <Hero bgRef={bgRef} />
-      <Article /> */}
+      <Article />
       <div className="hidden xl:block">
         <FilmsDesktop bgRef={bgRef} />
       </div>
@@ -36,10 +36,10 @@ const App = () => {
       <div className="xl:hidden">
         <FilmsMobile bgRef={bgRef} />
       </div>
-      {/* <Poster /> */}
-      {/* <Author /> */}
+      <Poster />
+      <Author />
       {/* <Demo /> */}
-      {/* <Footer /> */}
+      <Footer />
       {/* {loading && <Loader onComplete={() => setLoading(false)} />} */}
     </div>
   );

@@ -7,6 +7,9 @@ const Header = () => {
     gsap.set(".header", {
       scale: 1.3,
     });
+    gsap.set(".header-text", {
+      color: "#000",
+    });
 
     gsap.to(".header", {
       scale: 1,
@@ -19,10 +22,20 @@ const Header = () => {
         scrub: true,
       },
     });
+    gsap.to(".header-text", {
+      color: "#fff",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero", // or ".hero"
+        start: "top top",
+        end: "+=10%",
+        scrub: true,
+      },
+    });
   }, []);
   return (
     <header className="header fixed top-5 left-5 md:top-8 md:left-8 z-20 select-none flex flex-col  items-end  gap-1 ">
-      <h1 className="text-[14px] md:text-[22px]  uppercase leading-none tracking-[5px] text-black">
+      <h1 className="text-[14px] md:text-[22px]  uppercase leading-none tracking-[5px] header-text">
         Imran
       </h1>
 

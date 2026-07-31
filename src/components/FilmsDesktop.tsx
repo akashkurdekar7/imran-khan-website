@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import star from "/stickers/star.png";
 import tape from "/stickers/tape.png";
 import whiteTape from "/stickers/white-tape.png";
+import TextReveal from "../helpers/TextReveal";
 gsap.registerPlugin(ScrollTrigger);
 const slide1 = "/films/slide1.png";
 const slide2 = "/films/slide2.png";
@@ -202,58 +203,12 @@ const FilmsDesktop = ({ bgRef }: FilmsProps) => {
           // },
         });
       });
-      gsap.set(".text-reveal", {
-        xPercent: -100,
-      });
 
-      gsap.to(".text-reveal", {
-        xPercent: 200,
-        ease: "none",
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: ".text-frame",
-          start: "top 80%",
-          end: "+=100",
-          scrub: 1,
-        },
-      });
-      gsap.set(".text-reveal2", {
-        xPercent: -150,
-      });
-      gsap.utils.toArray(".text-frame2").forEach((el) => {
-        const frame = el as HTMLElement;
-
-        gsap.to(frame.querySelectorAll(".text-reveal2"), {
-          xPercent: 300,
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: frame,
-            containerAnimation: horizontalTween,
-            start: "left 70%",
-            end: "+=100",
-            scrub: 3,
-          },
-        });
-      });
       gsap.to(bgRef.current, {
         color: "#FFF2B2",
         lineColor: "#8A6F00",
         duration: 0.8,
       });
-      // gsap.utils.toArray(".text-frame2").forEach((frame) => {
-      //   gsap.to(frame.querySelectorAll(".text-reveal2"), {
-      //     xPercent: 300,
-      //     stagger: 0.15,
-      //     scrollTrigger: {
-      //       trigger: frame,
-      //       containerAnimation: horizontalTween,
-      //       start: "left 70%",
-      //       end: "+=100",
-      //       scrub: 3,
-      //       toggleActions: "once",
-      //     },
-      //   });
-      // });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -282,8 +237,14 @@ const FilmsDesktop = ({ bgRef }: FilmsProps) => {
                 className="w-full h-full object-cover"
               />
             </div>
+            <TextReveal className="absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] text-[16px] max-w-[250px] flex flex-col gap-4">
+              <p className="mix-blend-difference text-white">"You know..."</p>
 
-            <div className="text-frame absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] text-[16px] max-w-[250px] flex flex-col gap-4">
+              <p className="mix-blend-difference text-white">
+                Sometimes I think love isn't supposed to be complicated.
+              </p>
+            </TextReveal>
+            {/* <div className="text-frame absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] text-[16px] max-w-[250px] flex flex-col gap-4">
               <p className="relative inline-block overflow-hidden">
                 <span className="text-reveal absolute inset-0 bg-yellow-300 z-10"></span>
                 <span className="relative z-20 mix-blend-difference text-white">
@@ -297,7 +258,7 @@ const FilmsDesktop = ({ bgRef }: FilmsProps) => {
                   Sometimes I think love isn't supposed to be complicated.
                 </span>
               </p>
-            </div>
+            </div> */}
 
             <div className="scene1-quote mix-blend-difference text-white absolute left-[20%] translate-x-[-50%] top-[90%] translate-y-[-50%] text-[16px] flex flex-col gap-4">
               <p>
@@ -386,26 +347,17 @@ const FilmsDesktop = ({ bgRef }: FilmsProps) => {
               />
             </div>
 
-            <div className="text-frame2 absolute left-[75%] top-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col gap-0 ">
-              <p className="relative overflow-hidden w-fit">
-                <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
-                <span className="relative mix-blend-difference text-white">
-                  main apne life ke har
-                </span>
+            <TextReveal className="absolute left-[75%] top-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col">
+              <p className="mix-blend-difference text-white">
+                main apne life ke har
               </p>
 
-              <p className="relative overflow-hidden w-fit">
-                <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
-                <span className="relative mix-blend-difference text-white">
-                  scene
-                </span>
-              </p>
+              <p className="mix-blend-difference text-white">scene</p>
 
-              <p className="relative overflow-hidden w-fit mix-blend-difference text-white">
-                <span className="text-reveal2 absolute inset-0 bg-[#fff403] z-10"></span>
-                <span className="relative">mein na star hoon...</span>
+              <p className="mix-blend-difference text-white">
+                mein na star hoon...
               </p>
-            </div>
+            </TextReveal>
 
             {/* <div className="scene2-quote absolute left-[75%] top-[50%]  -translate-x-1/2  -translate-y-1/2  flex flex-col gap-0">
               <p className="text-[18px]">main apne life ke har</p>
