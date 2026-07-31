@@ -130,7 +130,7 @@ type FilmsProps = {
   }>;
 };
 
-const Films = ({ bgRef }: FilmsProps) => {
+const FilmsDesktop = ({ bgRef }: FilmsProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -519,4 +519,4 @@ const Films = ({ bgRef }: FilmsProps) => {
   );
 };
 
-export default Films;
+export default FilmsDesktop;

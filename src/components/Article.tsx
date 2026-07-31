@@ -27,11 +27,18 @@ const Article = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      // gsap.set(".reveal-video", {
+      //   clipPath: "inset(0 100% 0 0)",
+      //   scale: 0.9,
+      // });
       gsap.set(".reveal-video", {
         clipPath: "inset(0 100% 0 0)",
-        scale: 0.9,
+        y: 100,
+        scale: 0.75,
+        rotateY: 30,
+        opacity: 0,
+        filter: "blur(10px)",
       });
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -47,15 +54,56 @@ const Article = () => {
         ease: "none",
       });
 
-      tl.to(
-        ".reveal-video",
-        {
+      // tl.to(
+      //   ".reveal-video",
+      //   {
+      //     clipPath: "inset(0 0% 0 0)",
+      //     scale: 1,
+      //     stagger: 0.15,
+      //     ease: "power3.out",
+      //   },
+      //   0
+      // );
+      gsap.utils.toArray<HTMLElement>(".reveal-video").forEach((video) => {
+        gsap.to(video, {
           clipPath: "inset(0 0% 0 0)",
+          y: 0,
           scale: 1,
-          stagger: 0.15,
-          ease: "power3.out",
+          rotateY: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1.2,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: video,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      });
+      gsap.fromTo(
+        ".award-wrapper",
+        {
+          clipPath: "inset(0 0 100% 0)",
+          y: 60,
+          scale: 0.8,
+          opacity: 0,
         },
-        0
+        {
+          clipPath: "inset(0 0 0% 0)",
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+            once: true,
+            markers: true,
+          },
+        }
       );
     }, sectionRef);
 
@@ -65,10 +113,24 @@ const Article = () => {
   const renderVideo = ({ src, title }: { src: string; title: string }) => (
     <div
       data-cursor={title}
-      className="reveal-video w-[180px] h-[90px] md:w-[240px] md:h-[120px] overflow-hidden rounded-full border border-white shrink-0"
+      className="
+reveal-video
+w-full
+max-w-[320px]
+sm:max-w-[380px]
+md:max-w-[450px]
+xl:max-w-[500px]
+h-max
+overflow-hidden
+rounded-xl
+md:rounded-2xl
+border border-white/15
+bg-neutral-900
+shadow-[0_25px_80px_rgba(0,0,0,.45)]
+"
     >
       <video
-        className="w-full h-full object-cover"
+        className="block w-full h-auto object-cover"
         src={src}
         autoPlay
         muted
@@ -82,41 +144,53 @@ const Article = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen  flex items-center justify-center px-8"
+      className=" py-16
+    md:py-24
+    lg:py-32
+    flex flex-col
+    items-center
+    justify-start
+    px-4
+    md:px-8"
     >
-      <div className=" mx-auto text-center">
-        <div
-          className="flex flex-wrap items-center  flex-col justify-center gap-6 
-tracking-tight text-[90px] xl:text-[150px] text-white uppercase leading-none text-mest"
-        >
-          <div className="flex items-center justify-center gap-8 w-full ">
-            <span className="text-mest reveal-text leading-none">Some</span>
+      <div className="award-wrapper w-[100px] mb-10 lg:mb-30 xl:mb-50 z-20">
+        <img
+          src="/award.svg"
+          alt=""
+          className="award w-full h-auto object-contain"
+        />
+      </div>
+      <div
+        className="flex flex-wrap items-center  flex-col justify-evenly gap-4 
+tracking-tight size90 text-white uppercase leading-none text-mest gap-[50px]"
+      >
+        <div className="flex items-center justify-center gap-8 w-full ">
+          <span className="text-mest reveal-text leading-none">Some</span>
 
-            {renderVideo(videos[0])}
+          {renderVideo(videos[0])}
 
-            <span className="text-mina reveal-text leading-none">Movies</span>
-          </div>
+          <span className="text-mina reveal-text leading-none">Movies</span>
+        </div>
 
-          <div className="flex items-center justify-center gap-8 w-full ">
-            <span className="text-mest reveal-text">Become</span>
+        <div className="flex items-center justify-center gap-8 w-full ">
+          <span className="text-mest reveal-text">Become</span>
 
-            <span className="text-mest reveal-text">Famous</span>
+          <span className="text-mest reveal-text">Famous</span>
 
-            {renderVideo(videos[1])}
-          </div>
+          {renderVideo(videos[1])}
+        </div>
 
-          <div className="flex items-center justify-center gap-8 w-full ">
-            <span className="text-mest reveal-text">Some</span>
-            {renderVideo(videos[2])}
+        <div className="flex items-center justify-center gap-8 w-full ">
+          <span className="text-mest reveal-text">Some</span>
+          {renderVideo(videos[2])}
 
-            <span className="text-mest reveal-text leading-none">Become</span>
-            <span className="text-mest reveal-text leading-none">A</span>
-          </div>
+          <span className="text-mest reveal-text leading-none">Become</span>
+          <span className="text-mest reveal-text leading-none">A</span>
+        </div>
 
-          <div className="flex items-center justify-center gap-8 w-full ">
-            <span className="text-mina reveal-text leading-none">Memory</span>
-            {renderVideo(videos[3])}
-          </div>
+        <div className="flex items-center justify-center gap-8 w-full ">
+          <span className="text-mina reveal-text leading-none">Memory</span>
+          {renderVideo(videos[3])}
         </div>
       </div>
     </section>

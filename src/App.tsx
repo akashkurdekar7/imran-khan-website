@@ -5,12 +5,13 @@ import Hero from "./components/Hero";
 import Cursor from "./helpers/Cursor";
 import Article from "./components/Article";
 import Poster from "./components/Poster";
-import Films from "./components/Films";
 import SmoothScroll from "./helpers/SmoothScroll";
 import Footer from "./components/Footer";
 import Background from "./helpers/Background";
 import Practise from "./components/Practise";
 import Author from "./components/Author";
+import FilmsDesktop from "./components/FilmsDesktop";
+import FilmsMobile from "./components/FilmsMobile";
 // import Practise from "./components/Practise";
 // import Demo from "./components/Demo";
 
@@ -25,14 +26,20 @@ const App = () => {
       <SmoothScroll />
       <Background bgRef={bgRef} />
       <Cursor />
-      <Header />
-      {/* <Hero bgRef={bgRef} />
-      <Article />
-      <Films bgRef={bgRef} /> */}
-      <Poster />
-      <Author />
+      {/* <Header />
+      <Hero bgRef={bgRef} />
+      <Article /> */}
+      <div className="hidden xl:block">
+        <FilmsDesktop bgRef={bgRef} />
+      </div>
+
+      <div className="xl:hidden">
+        <FilmsMobile bgRef={bgRef} />
+      </div>
+      {/* <Poster /> */}
+      {/* <Author /> */}
       {/* <Demo /> */}
-      <Footer />
+      {/* <Footer /> */}
       {/* {loading && <Loader onComplete={() => setLoading(false)} />} */}
     </div>
   );

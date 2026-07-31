@@ -27,6 +27,13 @@
   will-change: color;
 }
 
+.orange {
+  color: #f26b4f;
+}
+.bg-orange {
+  background: #f26b4f;
+}
+
 .scene {
   perspective: 1800;
   transform-style: preserve-3d;
@@ -131,7 +138,7 @@
   }
 
   @media (max-width: 1024px) {
-    font-size: 50px;
+    font-size: 42px;
   }
 
   @media (max-width: 767px) {
@@ -149,4 +156,39 @@
   @media (max-width: 380px) {
     font-size: 26px;
   }
+}
+.boy-text {
+  mix-blend-mode: difference;
+  bottom: 0%;
+  left: 28%;
+  transform: translateX(-50%);
+  @media (max-width: 1200px) {
+    top: 28%;
+    align-items: center;
+    bottom: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.boy-desc {
+  top: 50%;
+  right: 20%;
+  transform: translate(-50%, -50%);
+  @media (max-width: 1200px) {
+    top: 41%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+  }
+  @media (max-width: 768px) {
+    top: 40%;
+  }
+}
+.reveal-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.25);
+  pointer-events: none;
 }
