@@ -12,9 +12,9 @@
 //             <div className="grid grid-cols-4 gap-8">
 //                 <div className="relative h-[420px] rounded-3xl border border-white/10 bg-black overflow-hidden">
 //                     <div className="absolute top-6 left-6 z-10">
-//                         <p className="text-white/40 text-sm">01</p>
+//                         <p className="white/40 text-sm">01</p>
 //                         <div className="w-6 h-px bg-white/30 my-2" />
-//                         <h3 className="text-white text-xl tracking-wide">
+//                         <h3 className="white text-xl tracking-wide">
 //                             DIGITAL TERRAIN
 //                         </h3>
 //                     </div>
@@ -23,9 +23,9 @@
 
 //                 <div className="relative h-[420px] rounded-3xl border border-white/10 bg-black overflow-hidden">
 //                     <div className="absolute top-6 left-6 z-10">
-//                         <p className="text-white/40 text-sm">01</p>
+//                         <p className="white/40 text-sm">01</p>
 //                         <div className="w-6 h-px bg-white/30 my-2" />
-//                         <h3 className="text-white text-xl tracking-wide">
+//                         <h3 className="white text-xl tracking-wide">
 //                             DIGITAL TERRAIN
 //                         </h3>
 //                     </div>
@@ -37,9 +37,9 @@
 
 //                 <div className="relative h-[420px] rounded-3xl border border-white/10 bg-black overflow-hidden">
 //                     <div className="absolute top-6 left-6 z-10">
-//                         <p className="text-white/40 text-sm">01</p>
+//                         <p className="white/40 text-sm">01</p>
 //                         <div className="w-6 h-px bg-white/30 my-2" />
-//                         <h3 className="text-white text-xl tracking-wide">
+//                         <h3 className="white text-xl tracking-wide">
 //                             DIGITAL TERRAIN
 //                         </h3>
 //                     </div>
@@ -50,9 +50,9 @@
 
 //                 <div className="relative h-[420px] rounded-3xl border border-white/10 bg-black overflow-hidden">
 //                     <div className="absolute top-6 left-6 z-10">
-//                         <p className="text-white/40 text-sm">01</p>
+//                         <p className="white/40 text-sm">01</p>
 //                         <div className="w-6 h-px bg-white/30 my-2" />
-//                         <h3 className="text-white text-xl tracking-wide">
+//                         <h3 className="white text-xl tracking-wide">
 //                             DIGITAL TERRAIN
 //                         </h3>
 //                     </div>
@@ -62,9 +62,9 @@
 //                 </div>
 //                 <div className="relative h-[420px] rounded-3xl border border-white/10 bg-black overflow-hidden">
 //                     <div className="absolute top-6 left-6 z-10">
-//                         <p className="text-white/40 text-sm">01</p>
+//                         <p className="white/40 text-sm">01</p>
 //                         <div className="w-6 h-px bg-white/30 my-2" />
-//                         <h3 className="text-white text-xl tracking-wide">
+//                         <h3 className="white text-xl tracking-wide">
 //                             DIGITAL TERRAIN
 //                         </h3>
 //                     </div>
@@ -74,9 +74,9 @@
 //                 </div>
 //                 <div className="relative h-[420px] rounded-3xl border border-white/10 bg-black overflow-hidden">
 //                     <div className="absolute top-6 left-6 z-10">
-//                         <p className="text-white/40 text-sm">01</p>
+//                         <p className="white/40 text-sm">01</p>
 //                         <div className="w-6 h-px bg-white/30 my-2" />
-//                         <h3 className="text-white text-xl tracking-wide">
+//                         <h3 className="white text-xl tracking-wide">
 //                             DIGITAL TERRAIN
 //                         </h3>
 //                     </div>
@@ -86,9 +86,9 @@
 //                 </div>
 //                 <div className="relative h-[420px] rounded-3xl border border-white/10 bg-black overflow-hidden">
 //                     <div className="absolute top-6 left-6 z-10">
-//                         <p className="text-white/40 text-sm">01</p>
+//                         <p className="white/40 text-sm">01</p>
 //                         <div className="w-6 h-px bg-white/30 my-2" />
-//                         <h3 className="text-white text-xl tracking-wide">
+//                         <h3 className="white text-xl tracking-wide">
 //                             DIGITAL TERRAIN
 //                         </h3>
 //                     </div>

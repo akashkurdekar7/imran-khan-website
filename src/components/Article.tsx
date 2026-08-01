@@ -114,23 +114,15 @@ const Article = () => {
     <div
       data-cursor={title}
       className="
-reveal-video
-w-full
-max-w-[320px]
-sm:max-w-[380px]
-md:max-w-[450px]
-xl:max-w-[500px]
-h-max
-overflow-hidden
-rounded-xl
-md:rounded-2xl
-border border-white/15
-bg-neutral-900
-shadow-[0_25px_80px_rgba(0,0,0,.45)]
-"
+  reveal-video
+  xl:w-[40vw]
+  w-[40vw]
+  h-auto
+  overflow-hidden
+  "
     >
       <video
-        className="block w-full h-auto object-cover"
+        className=" w-full h-auto object-cover"
         src={src}
         autoPlay
         muted
@@ -144,14 +136,7 @@ shadow-[0_25px_80px_rgba(0,0,0,.45)]
   return (
     <section
       ref={sectionRef}
-      className=" py-16
-    md:py-24
-    lg:py-32
-    flex flex-col
-    items-center
-    justify-start
-    px-4
-    md:px-8"
+      className=" flex flex-col items-center justify-start "
     >
       <div className="award-wrapper w-[100px] mb-10 lg:mb-30 xl:mb-50 z-20">
         <img
@@ -161,35 +146,67 @@ shadow-[0_25px_80px_rgba(0,0,0,.45)]
         />
       </div>
       <div
-        className="flex flex-wrap items-center  flex-col justify-evenly gap-4 
-tracking-tight size90 text-white uppercase leading-none text-mest gap-[50px]"
+        className="hidden xl:flex flex-wrap items-center  flex-col justify-evenly gap-4 
+  tracking-tight article90 white uppercase leading-none text-mest gap-[50px]"
       >
         <div className="flex items-center justify-center gap-8 w-full ">
-          <span className="text-mest reveal-text leading-none">Some</span>
+          <span className="text-detai reveal-text leading-none ">Some</span>
 
           {renderVideo(videos[0])}
 
-          <span className="text-mina reveal-text leading-none">Movies</span>
+          <span className="text-lux reveal-text leading-none">Movies</span>
         </div>
 
         <div className="flex items-center justify-center gap-8 w-full ">
-          <span className="text-mest reveal-text">Become</span>
+          <span className=" text-detai reveal-text">Become</span>
 
-          <span className="text-mest reveal-text">Famous</span>
+          <span className=" text-detai reveal-text">Famous</span>
 
           {renderVideo(videos[1])}
         </div>
 
         <div className="flex items-center justify-center gap-8 w-full ">
-          <span className="text-mest reveal-text">Some</span>
+          <span className=" text-detai reveal-text">Some</span>
           {renderVideo(videos[2])}
 
-          <span className="text-mest reveal-text leading-none">Become</span>
-          <span className="text-mest reveal-text leading-none">A</span>
+          <span className=" text-detai reveal-text leading-none">Become</span>
+          <span className=" text-detai reveal-text leading-none">A</span>
         </div>
 
         <div className="flex items-center justify-center gap-8 w-full ">
-          <span className="text-mina reveal-text leading-none">Memory</span>
+          <span className="text-lux reveal-text leading-none">Memory.</span>
+          {renderVideo(videos[3])}
+        </div>
+      </div>
+      <div
+        className="flex xl:hidden flex-wrap items-center  flex-col justify-evenly 
+  tracking-tight article90 white uppercase leading-none text-mest gap-3 pb-20"
+      >
+        <div className="flex flex-col items-center justify-center gap-2 w-full ">
+          <span className="text-detai reveal-text leading-none ">Some</span>
+          <span className="text-lux tracking-widest  reveal-text leading-none">
+            Movies
+          </span>
+          {renderVideo(videos[0])}
+        </div>
+
+        <div className="flex flex-col items-center justify-center gap-2 w-full ">
+          <span className=" text-detai reveal-text">Become</span>
+          <span className=" text-detai tracking-wider reveal-text">Famous</span>
+          {renderVideo(videos[1])}
+        </div>
+
+        <div className="flex flex-col items-center justify-center gap-2 w-full ">
+          <span className=" text-detai reveal-text">Some</span>
+          <span className=" text-detai reveal-text leading-none">Become</span>
+          <span className=" text-detai reveal-text leading-none">A</span>
+          {renderVideo(videos[2])}
+        </div>
+
+        <div className="flex flex-col items-center justify-center gap-2 w-full ">
+          <span className="text-lux tracking-widest reveal-text leading-none">
+            Memory.
+          </span>
           {renderVideo(videos[3])}
         </div>
       </div>

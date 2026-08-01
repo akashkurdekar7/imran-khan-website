@@ -19,7 +19,7 @@ type TextRevealProps = {
 const TextReveal = ({
   children,
   className = "",
-  coverColor = "#f26b4f",
+  coverColor = "#F26B4F",
   start = "top 80%",
   end = "+=120",
   scrub = 0.8,

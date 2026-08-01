@@ -34,14 +34,14 @@ const Loader = ({ onComplete }: LoaderProps) => {
   return (
     <section
       ref={loaderRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#fff403]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#F26B4F]"
     >
       <div className="h-25 overflow-hidden">
         <div ref={stackRef} className="flex flex-col">
           {values.map((value) => (
             <div
               key={value}
-              className="h-25 flex items-center justify-center text-8xl font-black"
+              className="h-25 flex items-center justify-center text-8xl text-lux"
             >
               {value}%
             </div>
@@ -49,7 +49,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
         </div>
       </div>
 
-      <h1 className=" text-black absolute bottom-12 uppercase tracking-[0.1em] text-mina">
+      <h1 className=" black absolute bottom-10 uppercase text-[12px] tracking-[0.2em] text-detai">
         Lost Khan
       </h1>
     </section>

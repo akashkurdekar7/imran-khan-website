@@ -211,7 +211,7 @@ export default function Demo() {
     >
       <h1
         className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2
-text-[18vw] font-black text-white/5 whitespace-nowrap pointer-events-none"
+text-[18vw] font-black white/5 whitespace-nowrap pointer-events-none"
       >
         CHOCOLATE
       </h1>
@@ -255,7 +255,7 @@ text-[18vw] font-black text-white/5 whitespace-nowrap pointer-events-none"
 
         <div
           ref={screen2Content}
-          className="relative z-10 h-full flex flex-col justify-between p-12 text-white"
+          className="relative z-10 h-full flex flex-col justify-between p-12 white"
         >
           <div>
             <p className="tracking-[.4em] uppercase text-sm opacity-70">
@@ -371,7 +371,7 @@ hover:-translate-y-1
 hover:scale-105
 "
               >
-                <div className="absolute top-2 right-2 text-[10px] text-white/60 tracking-widest">
+                <div className="absolute top-2 right-2 text-[10px] white/60 tracking-widest">
                   FRAME {String(i + 1).padStart(3, "0")}
                 </div>
                 <img
@@ -382,7 +382,7 @@ hover:scale-105
                 <div className="absolute inset-0 bg-black/40" />
 
                 <div className="absolute bottom-2 left-2 right-2">
-                  <p className="text-white text-xs uppercase tracking-widest">
+                  <p className="white text-xs uppercase tracking-widest">
                     {movie}
                   </p>
                 </div>

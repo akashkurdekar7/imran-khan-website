@@ -97,15 +97,18 @@ const Hero = ({ bgRef }: HeroProps) => {
         reveal
       );
 
-      tl.to(path, {
-        fill: "#F26B4F",
-        duration: 0.15,
-      });
+      tl.to(
+        path,
+        {
+          fill: "#F26B4F",
+        },
+        "-=0.4"
+      );
       tl.to(
         heroBg.current,
         {
-          color: "#fff403",
-          lineColor: "#fff403",
+          color: "#000",
+          lineColor: "#EB5125",
           duration: 0.5,
         },
         0.1 // starts halfway through the timeline
@@ -156,7 +159,7 @@ const Hero = ({ bgRef }: HeroProps) => {
 
       gsap.to(left, {
         x: () => -(left.scrollWidth / 2),
-        duration: 12,
+        duration: 25,
         repeat: -1,
         ease: "none",
       });
@@ -169,21 +172,11 @@ const Hero = ({ bgRef }: HeroProps) => {
         },
         {
           x: 0,
-          duration: 18,
+          duration: 25,
           repeat: -1,
           ease: "sine.inOut",
         }
       );
-      gsap.to(".marquee-word", {
-        y: 12,
-        duration: 1.8,
-        ease: "sine.inOut",
-        stagger: {
-          each: 0.08,
-          repeat: -1,
-          yoyo: true,
-        },
-      });
     });
 
     return () => ctx.revert();
@@ -196,37 +189,34 @@ const Hero = ({ bgRef }: HeroProps) => {
         <div className="h-full relative">
           <div className="hero-hide absolute top-5 right-5 md:top-8 md:right-8">
             <ul className="flex flex-col items-end gap-2 uppercase text-right ">
-              <li className="text-[8px] md:text-[12px]  tracking-[0.35em] leading-none ">
+              <li className="text-[8px] md:text-[12px] text-detai tracking-[0.35em] leading-none black">
                 Actor
               </li>
 
-              <li className="text-[8px] md:text-[12px] tracking-[0.35em] leading-none ">
-                Since 2008
-              </li>
-
-              <li className="text-[8px] md:text-[12px] tracking-[0.35em] leading-none ">
+              <li className="text-[8px] md:text-[12px] text-lux uppercase tracking-[0.35em] leading-none black ">
                 India
               </li>
             </ul>
           </div>
-          <div className="hero-hide absolute boy-text flex flex-col uppercase gap-0 text-white">
+          <div className="hero-hide absolute boy-text flex flex-col uppercase gap-0  text-detai">
             <span className="size90 leading-none ">The</span>
             <span className="size90 leading-none">Boy</span>
             <span className="size90 leading-none">Next</span>
             <span className="size90 leading-none">Door</span>
           </div>
-          <div className="hero-hide absolute boy-desc flex flex-col items-start z-20 w-max">
+          <div className="hero-hide absolute boy-desc flex flex-col items-center xl:items-start z-20 w-max text-lux tracking-[0.09em]">
             <span className="orange size90 leading-[20px] hidden xl:block">
               "
             </span>
+            <div className="w-10 h-[2px] bg-[#F26B4F] my-1 block xl:hidden" />
+
             <p className=" text-[14px] xl:text-[18px]">
-              the boy who
-              <br className="hidden xl:block" />
+              the boy who <br className="hidden xl:block" />
               made romance
               <br className="hidden xl:block" />
               feel effortless.
             </p>
-            <div className="w-10 h-[2px] bg-[#F26B4F] mt-3" />
+            <div className="w-10 h-[2px] bg-[#F26B4F] mt-3 hidden xl:block" />
           </div>
           <div className="w-full h-full flex items-end justify-center">
             <img
@@ -258,10 +248,10 @@ const Hero = ({ bgRef }: HeroProps) => {
           />
         </svg>
       </div>
-      <section className="absolute h-screen top-0 left-0 right-0 z-6 flex flex-col justify-center">
+      <section className="absolute h-screen top-0 left-0 right-0 z-6 flex flex-col justify-center ">
         <div className=" absolute left-1/2 top-[20%] -translate-x-1/2 -translate-y-1/2 z-20  overflow-hidden">
           <div className="era-logo flex items-center gap-5">
-            <div className="flex flex-col items-center justify-center gap-1">
+            <div className="flex flex-col items-center justify-center ">
               <svg
                 className="mb-2 h-6 w-6"
                 viewBox="0 0 24 24"
@@ -272,45 +262,40 @@ const Hero = ({ bgRef }: HeroProps) => {
                 <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9Z" />
               </svg>
               <div className="flex items-center gap-3">
-                <span className="h-px w-14 bg-orange" />
-                <span className=" w-max text-[14px]  xl:text-[18px] tracking-[0.35em] uppercase text-white mix-blend-difference">
+                <span className="h-px xl:w-14 w-8 bg-orange" />
+                <span className=" w-max text-[12px]  xl:text-[12px] xl:tracking-[0.35em] uppercase white text-detai mix-blend-difference">
                   THE ROMANCE ARCHIVE
                 </span>
-                <span className="h-px w-14 bg-orange " />
+                <span className="h-px xl:w-14 w-8 bg-orange " />
               </div>
 
-              <span className="mt-2 text-[10px] xl:text-[12px] tracking-[0.6em] text-white/50 uppercase">
+              <span className="mt-0 white text-lux text-[8px] xl:text-[10px] xl:tracking-[0.6em] tracking-[0.3em]  uppercase">
                 EST. 2008
               </span>
             </div>
           </div>
         </div>
-        <div className="overflow-hidden">
+        <div className="absolute top-[42%] -translate-y-1/2 left-1/2 -translate-x-1/2 ">
           <div className="marquee-left whitespace-nowrap flex">
             {[1, 2, 3].map((_, i) => (
               <p
                 key={i}
-                className="size90 uppercase orange  text-mina px-10 shrink-0"
+                className="size90 uppercase text-[#EB5125] leading-none text-detai px-10 shrink-0"
               >
                 {marqueeText1}
               </p>
             ))}
           </div>
         </div>
-
-        <div className="overflow-hidden">
+        <div className="absolute top-[60%] -translate-y-1/2 right-1/2 translate-x-1/2">
           <div className="marquee-right whitespace-nowrap flex">
-            {marqueeText2.split(" ").map((word, i) => (
-              <span
+            {[1, 2, 3].map((_, i) => (
+              <p
                 key={i}
-                className="marquee-word size90  text-transparent uppercase text-mina px-10 shrink-0"
-                style={{
-                  color: "transparent",
-                  WebkitTextStroke: "1.5px white",
-                }}
+                className="size90 uppercase text-[#EB5125] leading-none text-lux px-10 shrink-0"
               >
-                {word}
-              </span>
+                {marqueeText2}
+              </p>
             ))}
           </div>
         </div>

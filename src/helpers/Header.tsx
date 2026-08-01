@@ -34,12 +34,12 @@ const Header = () => {
     });
   }, []);
   return (
-    <header className="header fixed top-5 left-5 md:top-8 md:left-8 z-20 select-none flex flex-col  items-end  gap-1 ">
-      <h1 className="text-[14px] md:text-[22px]  uppercase leading-none tracking-[5px] header-text">
+    <header className="header fixed top-5 left-5 md:top-8 md:left-8 z-20 select-none flex flex-col  items-end ">
+      <h1 className="text-[14px] md:text-[22px] text-detai uppercase leading-none  header-text">
         Imran
       </h1>
 
-      <h1 className=" text-[14px] md:text-[22px] uppercase leading-none  tracking-[5px] orange">
+      <h1 className=" text-[14px] md:text-[22px] text-lux uppercase leading-none  tracking-[0.5em] orange">
         Khan
       </h1>
     </header>

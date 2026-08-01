@@ -32,7 +32,6 @@ const App = () => {
       <div className="hidden xl:block">
         <FilmsDesktop bgRef={bgRef} />
       </div>
-
       <div className="xl:hidden">
         <FilmsMobile bgRef={bgRef} />
       </div>
@@ -40,7 +39,7 @@ const App = () => {
       <Author />
       {/* <Demo /> */}
       <Footer />
-      {/* {loading && <Loader onComplete={() => setLoading(false)} />} */}
+      {loading && <Loader onComplete={() => setLoading(false)} />}
     </div>
   );
 };
