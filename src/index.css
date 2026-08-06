@@ -1,18 +1,11 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap");
 
-@font-face {
-  font-family: "Mestika";
-  src: url("./assets/fonts/Mestika.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
+.font-serif {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
 }
 
-@font-face {
-  font-family: "Minasans";
-  src: url("./assets/fonts/Minasans.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
 @font-face {
   font-family: "NiaSeclux";
   src: url("./assets/fonts/NIASECLUX-REGULAR.OTF") format("opentype");
